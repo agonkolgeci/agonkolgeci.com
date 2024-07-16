@@ -1,0 +1,83 @@
+body {
+    font-family: var(--primary-font);
+    background: var(--primary-background-color);
+}
+
+p, label, input, textarea, li {
+    font-family: var(--secondary-font);
+}
+
+span {
+    color: var(--tertiary-color);
+}
+
+h1 {
+    font-size: var(--fs-m);
+  }
+
+h2 {
+    font-size: var(--fs-sm);
+}
+
+h3 {
+    font-size: var(--fs-xs);
+}
+
+ul {
+    list-style-type: none;
+}
+
+a {
+    color: inherit;
+}
+
+button {
+    border-radius: 25px;
+    border: none;
+  
+    padding: 10px 25px;
+
+    color: var(--primary-color);
+    background-color: var(--primary-background-color);
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+
+    position: relative;
+
+    padding: 100px 50px;
+    gap: 75px;
+
+    @include tablet {
+        padding: 50px 25px;
+    }
+
+    .section-title {
+        display: flex;
+        flex-direction: column;
+
+        max-width: min(800px, 100%);
+
+        gap: 10px;
+
+        text-align: center;
+    }
+
+    &.section-clear {
+        color: var(--secondary-color);
+        background-color: var(--primary-color);
+    }
+    
+    &.section-colored {
+        color: var(--primary-color);
+        background-color: var(--secondary-background-color);
+    }
+}

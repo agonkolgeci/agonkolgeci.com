@@ -1,0 +1,8 @@
+#contact {
+    .contact-form {
+        display: flex;
+        flex-direction: column;
+
+        width: min(600px, 100%);
+    }
+}

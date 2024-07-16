@@ -1,0 +1,49 @@
+// Montserrat
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+// Poppins
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+// Primary variables
+:root {
+  --primary-font: "Montserrat", sans-serif;
+  --secondary-font: "Poppins", sans-serif;
+
+  --primary-color: #ffffff;
+  --secondary-color: #000000;
+  --tertiary-color: #808080;
+
+  --primary-background-color: #152238;
+  --secondary-background-color: #192841;
+  --tertiary-background-color: #1c2e4a;
+  --quaternary-background-color: #203354;
+  --quinary-background-color: #23395d;
+  
+  --primary-gradient-color: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(121,157,255,1) 50%, rgba(66,90,175,1) 100%);
+
+  --fs-xl: clamp(50px, 4vw, 60px);
+  --fs-lg: clamp(40px, 4vw, 50px);
+  --fs-m: clamp(30px, 4vw, 40px);
+  --fs-sm: clamp(20px, 4vw, 30px);
+  --fs-xs: clamp(15px, 4vw, 20px);
+}
+
+// Utilities
+@import "./utils/base";
+@import "./utils/breakpoints";
+@import "./utils/components";
+@import "./utils/sliders";
+
+// Header
+@import "./header/nav";
+@import "./header/home";
+
+// Main
+@import "./main/skills";
+@import "./main/education";
+@import "./main/experiences";
+@import "./main/gallery";
+@import "./main/contact";
+
+// Footer
+@import "./footer/footer";

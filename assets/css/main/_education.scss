@@ -1,0 +1,63 @@
+:root {
+    --education-timeline-distance: 25px;
+    --education-timeline-width: 2px;
+    --education-timeline-disc: 15px;
+}
+
+#education {
+    .schools {
+        display: flex;
+        flex-direction: column-reverse;
+        position: relative;
+
+        gap: 50px;
+        margin-left: calc(var(--education-timeline-distance) * 2);
+        
+        &:before {
+            content: '';
+            background: var(--primary-color);
+            position: absolute;
+            
+            width: var(--education-timeline-width);
+            height: 100%;
+
+            transform: translateX(calc(var(--education-timeline-distance)*-1));
+        }
+        
+        .school {
+            display: flex;
+            flex-direction: column;
+            
+            gap: 5px;
+
+            .school-title {
+                span {
+                    color: var(--tertiary-color);
+                }
+            }
+
+            .school-description {
+                font-size: var(--fs-xxs);
+            }
+
+            .school-logo {
+                img {
+                    object-fit: contain;
+                    width: 200px;
+                }
+            }
+
+            &:before {
+                content: '';
+                background: var(--primary-gradient-color);
+                position: absolute;
+
+                width: var(--education-timeline-disc);
+                height: var(--education-timeline-disc);
+                border-radius: var(--education-timeline-disc);
+
+                transform: translate(calc(var(--education-timeline-distance)*-1 - var(--education-timeline-disc)/2 + var(--education-timeline-width)/2), calc(var(--education-timeline-disc)/2));
+            }
+        }
+    }
+}

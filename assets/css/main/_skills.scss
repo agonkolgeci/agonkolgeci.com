@@ -1,0 +1,48 @@
+#skills {
+    .programming {
+        width: min(1000px, 100%);
+
+        .languages {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            white-space: nowrap;
+
+            .language {
+                display: inline-flex;
+                font-size: var(--fs-xl);
+
+                margin: 0 50px; 
+                @include tablet {
+                    margin: 0 25px;
+                }
+            }
+        }
+    }
+
+    .qualities {
+        display: flex;
+        flex-direction: column;
+
+        gap: 50px;
+
+        .quality {
+            display: flex;
+            align-items: center;
+
+            gap: 25px;
+
+            .quality-icon {
+                font-size: var(--fs-xl);
+                color: var(--primary-background-color);
+            }
+
+            .quality-content {
+                p {
+                    color: var(--tertiary-color);
+                }
+            }
+        }
+    }
+}
