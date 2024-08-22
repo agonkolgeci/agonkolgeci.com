@@ -1,6 +1,6 @@
 #skills {
     .programming {
-        width: min(1000px, 100%);
+        max-width: var(--screen-md);
 
         .languages {
             display: flex;
@@ -11,7 +11,7 @@
 
             .language {
                 display: inline-flex;
-                font-size: var(--fs-xl);
+                font-size: var(--fs-5xl);
 
                 margin: 0 50px; 
                 @include tablet {
@@ -27,6 +27,8 @@
 
         gap: 50px;
 
+        max-width: var(--screen-md);
+
         .quality {
             display: flex;
             align-items: center;
@@ -34,7 +36,7 @@
             gap: 25px;
 
             .quality-icon {
-                font-size: var(--fs-xl);
+                font-size: var(--fs-5xl);
                 color: var(--primary-background-color);
             }
 

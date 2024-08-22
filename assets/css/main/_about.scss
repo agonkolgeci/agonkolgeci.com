@@ -1,0 +1,72 @@
+#about {
+    .about-me {
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+
+        @include tablet {
+            flex-direction: column;
+        }
+
+        gap: var(--fs-5xl);
+
+        max-width: var(--screen-lg);
+
+        .about-photo {
+            display: flex;
+
+            .about-portrait {
+                background: var(--primary-gradient-color);
+
+                img {
+                    width: 250px;
+                    height: 300px;
+            
+                    transform: translate(-25px, -25px);
+
+                    object-fit: cover;
+                    object-position: center;
+                }
+            }
+        }
+
+
+        .about-description {
+            display: flex;
+            flex-direction: column;
+
+            gap: var(--fs-5xl);
+
+            .about-readme {
+                display: flex;
+                flex-direction: column;
+
+                gap: var(--fs-xs);
+
+                font-size: var(--fs-xs);
+            }
+
+            .about-socials {
+                display: flex;
+                flex-direction: row;
+                
+                gap: var(--fs-3xl);
+                
+                .social {
+                    a {
+                        color: var(--secondary-color);
+                    }
+                
+                    i {
+                        font-size: var(--fs-5xl);
+                        transition: transform .2s;
+                
+                        &:hover {
+                            transform: scale(1.2);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

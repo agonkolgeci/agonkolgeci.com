@@ -5,6 +5,7 @@ body {
 
 p, label, input, textarea, li {
     font-family: var(--secondary-font);
+    font-size: var(--fs-lg);
 }
 
 span {
@@ -12,15 +13,23 @@ span {
 }
 
 h1 {
-    font-size: var(--fs-m);
+    font-size: var(--fs-5xl);
   }
 
 h2 {
-    font-size: var(--fs-sm);
+    font-size: var(--fs-4xl);
 }
 
 h3 {
-    font-size: var(--fs-xs);
+    font-size: var(--fs-3xl);
+}
+
+h4 {
+    font-size: var(--fs-2xl);
+}
+
+h5 {
+    font-size: var(--fs-xl);
 }
 
 ul {
@@ -53,7 +62,7 @@ section {
 
     position: relative;
 
-    padding: 100px 50px;
+    padding: 100px 100px;
     gap: 75px;
 
     @include tablet {
@@ -64,20 +73,20 @@ section {
         display: flex;
         flex-direction: column;
 
-        max-width: min(800px, 100%);
+        max-width: 768px;
 
         gap: 10px;
 
         text-align: center;
     }
 
-    &.section-clear {
+    &.section-white {
         color: var(--secondary-color);
         background-color: var(--primary-color);
     }
     
-    &.section-colored {
-        color: var(--primary-color);
-        background-color: var(--secondary-background-color);
+    &.section-gray {
+        color: var(--secondary-color);
+        background-color: rgb(241 245 249);
     }
 }

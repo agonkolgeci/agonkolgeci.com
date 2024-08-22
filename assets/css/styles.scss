@@ -21,11 +21,31 @@
   
   --primary-gradient-color: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(121,157,255,1) 50%, rgba(66,90,175,1) 100%);
 
-  --fs-xl: clamp(50px, 4vw, 60px);
-  --fs-lg: clamp(40px, 4vw, 50px);
-  --fs-m: clamp(30px, 4vw, 40px);
-  --fs-sm: clamp(20px, 4vw, 30px);
-  --fs-xs: clamp(15px, 4vw, 20px);
+  --screen-sm: 640px;
+  --screen-md: 768px;
+  --screen-lg: 1024px;
+  --screen-xl: 1280px;
+  --screen-2xl: 1536px;
+
+  --fs-xs: 0.75rem;
+  --fs-sm: 0.875rem;
+  --fs-base: 1rem;
+  --fs-lg: 1.125rem;
+  --fs-xl: 1.25rem;
+  --fs-2xl: 1.5rem;
+  --fs-3xl: 1.875rem;
+  --fs-4xl: 2.25rem;
+  --fs-5xl: 3rem;
+  --fs-6xl: 3.75rem;
+  --fs-7xl: 4.5rem;
+  --fs-8xl: 6rem;
+  --fs-9xl: 8rem;
+
+  // --fs-xl: clamp(50px, 4vw, 60px);
+  // --fs-lg: clamp(40px, 4vw, 50px);
+  // --fs-m: clamp(30px, 4vw, 40px);
+  // --fs-sm: clamp(20px, 4vw, 30px);
+  // --fs-xs: clamp(10px, 4vw, 20px);;
 }
 
 // Utilities
@@ -39,6 +59,7 @@
 @import "./header/home";
 
 // Main
+@import "./main/about";
 @import "./main/skills";
 @import "./main/education";
 @import "./main/experiences";

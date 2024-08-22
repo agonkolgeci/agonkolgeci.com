@@ -1,86 +1,29 @@
 .home {
   display: flex;
+  align-items: center;
   justify-content: center;
   
-  flex-direction: row;
-  gap: 10vw;
-  @include tablet {
-    flex-direction: column;
-    gap: 10vh;
-  }
+  height: 100vh;
 
-  padding: min(100px, 10vh) min(250px, 10vw);
+  background-image: url("/assets/images/background.png");
+  background-size: cover;
+  background-position: center;
 
-  background-color: var(--secondary-background-color);
-  
-  .about {
-    display: flex;
-    flex-direction: column;
-  
-    gap: var(--fs-sm);
-  
-    .about-title {
-      h1 {
-        font-size: var(--fs-lg);
-  
-        -webkit-text-fill-color: transparent;  
-        background: var(--primary-gradient-color) text;
-      }
-  
-      p {
-        font-size: var(--fs-m);
-        color: var(--primary-color);
-      }
-    }
-  
-    .about-description {
-      display: flex;
-      flex-direction: column;
+  padding: 25px;
 
-      gap: var(--fs-sm);
+  .home-title {
+    text-align: center;
 
-      p {
-        font-size: var(--fs-xs);
-        color: var(--primary-color);
-      }
-    }
-  
-    .socials {
-      display: flex;
-      flex-direction: row;
-  
-      gap: var(--fs-sm);
-  
-      .social {
-        a {
-          color: var(--primary-color);
-        }
-      
-        i {
-          font-size: var(--fs-lg);
-          transition: transform .2s;
-            
-          &:hover {
-            transform: scale(1.2);
-          }
-        }
-      }
-    }
-  }
-  
-  .profile {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  
-    .photo {
-      background: var(--primary-gradient-color);
+    h1 {
+      font-size: var(--fs-6xl);
     
-      img {
-        height: 300px;
-          
-        transform: translate(-25px, -25px);
-      }
+      -webkit-text-fill-color: transparent;
+      background: var(--primary-gradient-color) text;
+    }
+    
+    p {
+      font-size: var(--fs-4xl);
+      color: var(--primary-color);
     }
   }
 }

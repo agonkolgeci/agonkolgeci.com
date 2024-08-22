@@ -1,6 +1,6 @@
 :root {
     --education-timeline-distance: 25px;
-    --education-timeline-width: 2px;
+    --education-timeline-width: 1px;
     --education-timeline-disc: 15px;
 }
 
@@ -10,12 +10,14 @@
         flex-direction: column-reverse;
         position: relative;
 
+        max-width: var(--screen-sm);
+
         gap: 50px;
         margin-left: calc(var(--education-timeline-distance) * 2);
         
         &:before {
             content: '';
-            background: var(--primary-color);
+            background: var(--primary-background-color);
             position: absolute;
             
             width: var(--education-timeline-width);
@@ -28,7 +30,7 @@
             display: flex;
             flex-direction: column;
             
-            gap: 5px;
+            gap: 20px;
 
             .school-title {
                 span {
