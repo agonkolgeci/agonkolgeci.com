@@ -174,6 +174,7 @@ nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: top;
   height: var(--nav-height);
   margin: 0 5vw 0 5vw;
   color: var(--primary-color);
@@ -260,9 +261,19 @@ nav .nav-content .nav-links .nav-link a {
   -webkit-text-fill-color: transparent;
   background: var(--primary-gradient-color) text;
 }
+@media (max-width: 1024px) {
+  .home .home-title h1 {
+    font-size: var(--fs-5xl);
+  }
+}
 .home .home-title p {
   font-size: var(--fs-4xl);
   color: var(--primary-color);
+}
+@media (max-width: 1024px) {
+  .home .home-title p {
+    font-size: var(--fs-3xl);
+  }
 }
 
 #about .about-me {
@@ -300,7 +311,7 @@ nav .nav-content .nav-links .nav-link a {
 #about .about-me .about-description .about-readme {
   display: flex;
   flex-direction: column;
-  gap: var(--fs-xs);
+  gap: var(--fs-lg);
   font-size: var(--fs-xs);
 }
 #about .about-me .about-description .about-socials {
@@ -365,7 +376,7 @@ nav .nav-content .nav-links .nav-link a {
 
 #education .schools {
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
   position: relative;
   max-width: var(--screen-sm);
   gap: 50px;

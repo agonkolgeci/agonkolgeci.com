@@ -16,6 +16,9 @@
 
     h1 {
       font-size: var(--fs-6xl);
+      @include tablet {
+        font-size: var(--fs-5xl);
+      }
     
       -webkit-text-fill-color: transparent;
       background: var(--primary-gradient-color) text;
@@ -23,6 +26,10 @@
     
     p {
       font-size: var(--fs-4xl);
+      @include tablet {
+        font-size: var(--fs-3xl);
+      }
+
       color: var(--primary-color);
     }
   }
