@@ -174,7 +174,6 @@ nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  position: top;
   height: var(--nav-height);
   margin: 0 5vw 0 5vw;
   color: var(--primary-color);
