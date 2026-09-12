@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { motion, useScroll, useMotionValueEvent, useTransform, MotionValue } from "framer-motion";
+import { motion, useScroll, useMotionValueEvent, useInView, useReducedMotion } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import Article from "@/components/pages/Article";
@@ -183,23 +183,12 @@ function ConstellationBadge({ item, activeStep, radiusMultiplier, isCompactHeigh
             onMouseEnter={handleMouseEnter}
             onMouseLeave={() => onHover(null)}
         >
-            {/* 
-              Gentle levitating float drift using hardware-accelerated pure CSS keyframes.
-              We use vanilla CSS animations offloaded directly to the GPU compositor thread,
-              completely bypassing Framer Motion loop cycles and CPU layout calculations.
-              Replaced expensive backdrop-blur-md with solid obsidian glass bg-[#0a0a0a]/90.
-            */}
+            {/* Static resting badges keep the entrance without a permanent animation loop. */}
             <div
-                className={`relative flex items-center justify-center rounded-full bg-[#0a0a0a]/90 border border-white/6 hover:border-accent-blue/40 shadow-lg transition-all duration-300 group hover:[animation-play-state:paused] ${isCompactHeight ? "size-14" : "size-14 sm:size-18 md:size-20"}`}
+                className={`relative flex items-center justify-center rounded-full bg-[#0a0a0a]/90 border border-white/6 hover:border-accent-blue/40 shadow-lg transition-all duration-300 group ${isCompactHeight ? "size-14" : "size-14 sm:size-18 md:size-20"}`}
                 style={{
                     boxShadow: isHovered ? `0 0 25px ${item.color}35` : "none",
-                    borderColor: isHovered ? `${item.color}40` : "rgba(255, 255, 255, 0.06)",
-                    // Paused rather than removed on hover: dropping the animation would
-                    // snap the badge back to its resting position instead of holding it
-                    // wherever the drift had floated it to.
-                    animation: isErupted
-                        ? `skillsBadgeFloat ${3.2 + (colIndex % 3) * 0.7 + (rowIndex % 2) * 0.5}s ease-in-out infinite`
-                        : "none"
+                    borderColor: isHovered ? `${item.color}40` : "rgba(255, 255, 255, 0.06)"
                 }}
             >
                 {/* Neon shadow aura backdrop */}
@@ -218,13 +207,9 @@ function ConstellationBadge({ item, activeStep, radiusMultiplier, isCompactHeigh
                 </span>
             </div>
 
-            {/* 
-              Sleek Floating Glass HUD Card Tooltip. 
-              Always in the DOM to eliminate hover shivering.
-              Dynamically conditions backdrop-blur-xl ONLY when hovered, saving 99% of GPU compositor memory!
-            */}
-            <motion.div
-                initial={false}
+            {/* Mount only the active tooltip instead of keeping 32 hidden panels. */}
+            {isHovered && <motion.div
+                initial={{ opacity: 0, y: 10, scale: 0.95 }}
                 animate={{
                     opacity: isHovered ? 1 : 0,
                     y: isHovered ? 0 : 10,
@@ -232,7 +217,7 @@ function ConstellationBadge({ item, activeStep, radiusMultiplier, isCompactHeigh
                     pointerEvents: isHovered ? "auto" : "none"
                 }}
                 transition={{ type: "spring", stiffness: 150, damping: 18 }}
-                className={`absolute left-1/2 -translate-x-1/2 w-64 p-5 bg-[#050505]/95 ${isHovered ? 'backdrop-blur-xl' : ''} ${placeTooltipBelow ? "top-full mt-5" : "bottom-full mb-5"} border border-white/10 rounded-2xl shadow-2xl z-[999] pointer-events-none text-left flex flex-col gap-3 selection:bg-accent-blue selection:text-white border-t-2`}
+                className={`absolute left-1/2 -translate-x-1/2 w-64 p-5 bg-[#050505]/95 ${placeTooltipBelow ? "top-full mt-5" : "bottom-full mb-5"} border border-white/10 rounded-2xl shadow-2xl z-[999] pointer-events-none text-left flex flex-col gap-3 selection:bg-accent-blue selection:text-white border-t-2`}
                 style={{
                     borderTopColor: item.color,
                     boxShadow: `0 10px 30px -5px rgba(0,0,0,0.8), 0 0 15px ${item.color}20`,
@@ -262,7 +247,7 @@ function ConstellationBadge({ item, activeStep, radiusMultiplier, isCompactHeigh
                 <p className="font-secondary text-[11px] text-gray-300 leading-relaxed font-semibold">
                     {t_desc}
                 </p>
-            </motion.div>
+            </motion.div>}
         </motion.div>
     );
 }
@@ -272,13 +257,16 @@ export default function SkillsClient() {
 
     // Ref and states
     const containerRef = useRef<HTMLDivElement>(null);
+    const mobileLaptopRef = useRef<HTMLDivElement>(null);
+    const mobileLaptopVisible = useInView(mobileLaptopRef, { once: true, amount: 0.3 });
+    const reduceMotion = useReducedMotion();
     const [hoveredTech, setHoveredTech] = useState<string | null>(null);
     const [radiusMultiplier, setRadiusMultiplier] = useState(1);
     const [isCompactHeight, setIsCompactHeight] = useState(false);
     const [isNarrowViewport, setIsNarrowViewport] = useState(false);
     // Below lg the badges are a grid under the machine instead of orbits around it,
     // so the deck goes back into the flow instead of hanging over what follows.
-    const [usesBadgeGrid, setUsesBadgeGrid] = useState(false);
+    const [usesBadgeGrid, setUsesBadgeGrid] = useState(true);
     // Extra push applied to the whole composition so the pinned frame has the same
     // breathing room above the heading as below the machine.
     const [contentOffset, setContentOffset] = useState(0);
@@ -355,8 +343,8 @@ export default function SkillsClient() {
             // to the viewport is a single scale factor. The width steps keep the lid
             // the same size the flat mockup used to be, so the badge arcs still clear it.
             const laptopWidthScale = width < 640 ? 0.5 : width < 1024 ? 0.72 : 0.96;
-            // Below lg the badges sit in a grid under the machine, which needs room.
-            const laptopHeightScale = (height - (width < 1024 ? 470 : 300)) / 472;
+            // Mobile uses normal flow, so only desktop needs height-based scaling.
+            const laptopHeightScale = width < 1024 ? 1 : (height - 300) / 472;
             const scale = Math.max(0.4, Math.min(1, laptopWidthScale, laptopHeightScale));
             setLaptopScale(scale);
 
@@ -391,12 +379,11 @@ export default function SkillsClient() {
         <Article pill={t("title")}>
             <div className="relative z-10 w-full flex flex-col gap-10 max-w-7xl mx-auto px-8 overflow-visible">
                 
-                {/* 1. SCROLL LOCKED LOCKING CHAMBER FOR CONSTELLATION ERUPTION (fast, natural timeline) */}
-                <div ref={containerRef} className="relative h-[135svh] w-full overflow-visible">
+                {/* Pin the constellation on desktop; let the mobile grid scroll naturally. */}
+                <div ref={containerRef} className="relative w-full overflow-visible lg:h-[135svh]">
                     
-                    {/* Sticky locking viewport frame */}
-                    {/* svh, not vh: on phones `vh` is the tall viewport, so with the URL bar out the pinned frame was taller than what you could actually see. */}
-                    <div className="sticky top-[72px] h-[calc(100svh-72px)] w-full flex flex-col items-center justify-center overflow-visible select-none">
+                    {/* The pinned frame is only used at desktop widths. */}
+                    <div className="relative lg:sticky lg:top-[72px] lg:h-[calc(100svh-72px)] w-full flex flex-col items-center justify-center overflow-visible select-none">
 
 
                         {/* 
@@ -405,8 +392,8 @@ export default function SkillsClient() {
                           at the top of the viewport when the section pins!
                         */}
                         <div
-                            className={`absolute left-1/2 flex flex-col items-center text-center z-30 select-none w-full max-w-2xl px-6 ${isCompactHeight ? "top-4" : "top-8"}`}
-                            style={{ transform: `translate(-50%, ${contentOffset}px)` }}
+                            className={`relative lg:absolute lg:left-1/2 flex flex-col items-center text-center z-30 select-none w-full max-w-2xl lg:px-6 ${isCompactHeight ? "lg:top-4" : "lg:top-8"}`}
+                            style={usesBadgeGrid ? undefined : { transform: `translate(-50%, ${contentOffset}px)` }}
                         >
                             <h2 className={`font-primary font-extrabold tracking-tight leading-none text-white ${isCompactHeight ? "text-3xl sm:text-4xl" : "text-4xl sm:text-5xl"}`}>
                                 {t("title")}
@@ -418,7 +405,7 @@ export default function SkillsClient() {
 
                         {/* Centered chamber container */}
                         <div
-                            className={`relative w-full max-w-5xl h-full flex flex-col items-center justify-center overflow-visible ${isCompactHeight ? "mt-12" : "mt-16 sm:mt-20"}`}
+                            className={`relative w-full max-w-5xl lg:h-full flex flex-col items-center justify-center overflow-visible ${isCompactHeight ? "mt-8 lg:mt-12" : "mt-8 lg:mt-20"}`}
                             style={{ transform: `translateY(${contentOffset}px)` }}
                         >
                             
@@ -434,7 +421,7 @@ export default function SkillsClient() {
                                     duration: 1.2,
                                     delay: activeStep >= 1 ? 0.2 : 0
                                 }}
-                                className="absolute bottom-[50%] left-1/2 -translate-x-1/2 w-80 sm:w-96 md:w-[460px] h-[360px] bg-gradient-to-t from-blue-600/30 via-cyan-500/15 to-transparent blur-3xl rounded-full origin-bottom pointer-events-none z-0 translate-y-24"
+                                className="hidden lg:block absolute bottom-[50%] left-1/2 -translate-x-1/2 w-80 sm:w-96 md:w-[460px] h-[360px] bg-gradient-to-t from-blue-600/30 via-cyan-500/15 to-transparent blur-3xl rounded-full origin-bottom pointer-events-none z-0 translate-y-24"
                             />
 
                             {/* 
@@ -443,23 +430,24 @@ export default function SkillsClient() {
                               the lid stays centred in the chamber and the keyboard simply hangs below it.
                             */}
                             <div
+                                ref={mobileLaptopRef}
                                 className="relative z-10 flex items-start justify-center"
                                 style={usesBadgeGrid ? undefined : {
                                     marginBottom: -DECK_OVERHANG * laptopScale,
                                     transform: `translateY(${emitterY}px)`
                                 }}
                             >
-                                <MacBook open={activeStep >= 1} scale={laptopScale} />
+                                <MacBook open={reduceMotion || (usesBadgeGrid ? mobileLaptopVisible : activeStep >= 1)} scale={laptopScale} />
                             </div>
 
                             {/*
                               PROJECTED BADGES ORBIT matrix.
-                              The arcs need roughly 800px of width, so they only exist from `sm`
+                              The arcs need a desktop viewport, so they only exist from `lg`
                               up. The wrapper reproduces the chamber's centring, which is what the
                               absolutely positioned badges measure their orbit from.
                             */}
                             <div className="absolute inset-0 z-20 hidden lg:flex items-center justify-center pointer-events-none overflow-visible">
-                                {TECH_CONSTELLATION.map((item, index) => (
+                                {!usesBadgeGrid && TECH_CONSTELLATION.map((item, index) => (
                                     <ConstellationBadge
                                         key={item.name}
                                         item={item}
@@ -475,30 +463,21 @@ export default function SkillsClient() {
                                 ))}
                             </div>
 
-                            {/*
-                              Phone layout: 32 badges cannot orbit inside 375px without either
-                              spilling off-screen or overlapping each other, so below `sm` they
-                              land as a grid under the machine — same burst, same order.
-                            */}
-                            <div className="lg:hidden relative z-10 mt-5 flex flex-wrap items-center justify-center gap-2 sm:gap-2.5 max-w-[330px] sm:max-w-[560px] px-1">
+                            {/* Mobile stays in normal flow; each icon reveals as it enters view. */}
+                            <div className="lg:hidden relative z-10 mt-6 mb-12 grid grid-cols-3 min-[360px]:grid-cols-4 sm:grid-cols-8 gap-3 w-full max-w-[560px]">
                                 {TECH_CONSTELLATION.map((item, index) => (
                                     <motion.div
                                         key={item.name}
-                                        initial={false}
-                                        animate={{
-                                            opacity: activeStep >= 1 ? 1 : 0,
-                                            scale: activeStep >= 1 ? 1 : 0.2,
-                                            y: activeStep >= 1 ? 0 : -24
-                                        }}
-                                        transition={{
-                                            type: "spring",
-                                            stiffness: 260,
-                                            damping: 18,
-                                            delay: activeStep >= 1 ? 0.4 + index * 0.015 : 0
-                                        }}
-                                        className="size-9 sm:size-11 rounded-full bg-[#0a0a0a]/90 border border-white/6 flex items-center justify-center shrink-0"
+                                        initial={reduceMotion ? false : { opacity: 0, y: 12 }}
+                                        whileInView={{ opacity: 1, y: 0 }}
+                                        viewport={{ once: true, amount: 0.3 }}
+                                        transition={{ duration: reduceMotion ? 0 : 0.3, delay: reduceMotion ? 0 : (index % 4) * 0.045 }}
+                                        className="flex min-w-0 flex-col items-center gap-2 py-2"
                                     >
-                                        <TechIcon name={item.name} className="size-5 sm:size-6" />
+                                        <div className="size-11 rounded-full bg-[#0a0a0a]/90 border border-white/10 flex items-center justify-center shrink-0">
+                                            <TechIcon name={item.name} className="size-6" />
+                                        </div>
+                                        <span className="font-secondary text-[10px] leading-tight text-gray-400 text-center break-words w-full">{item.name}</span>
                                     </motion.div>
                                 ))}
                             </div>
@@ -509,13 +488,6 @@ export default function SkillsClient() {
                 </div>
 
             </div>
-            {/* Super lightweight GPU-promoted keyframe stylesheet for lag-free floating animation at 120 FPS */}
-            <style>{`
-                @keyframes skillsBadgeFloat {
-                    0%, 100% { transform: translateY(0) translateZ(0); }
-                    50% { transform: translateY(-5px) translateZ(0); }
-                }
-            `}</style>
         </Article>
     );
 }

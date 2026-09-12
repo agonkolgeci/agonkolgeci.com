@@ -336,7 +336,7 @@ export default function GalleryClient() {
         return true;
     });
 
-    const renderCard = (repo: any) => {
+    const renderCard = (repo: Repository) => {
         const isArchived = repo.archived;
         return (
             <motion.div
@@ -355,7 +355,7 @@ export default function GalleryClient() {
                     <div className="flex justify-between items-start gap-4">
                         <div className="flex items-center gap-2">
                             <FontAwesomeIcon icon={faFolderOpen} className={`size-4 ${isArchived ? 'text-accent-teal' : 'text-accent-blue'}`} />
-                            <Link href={repo.html_url} target="_blank" className="font-primary text-base font-bold text-white hover:text-accent-blue hover:underline transition-colors leading-tight cursor-pointer">
+                            <Link href={repo.html_url} target="_blank" className="font-primary text-base font-bold text-white group-hover:text-accent-blue transition-colors leading-tight cursor-pointer after:absolute after:inset-0 after:z-10 after:rounded-3xl">
                                 {repo.name}
                             </Link>
                         </div>
@@ -387,6 +387,19 @@ export default function GalleryClient() {
                             {repo.description}
                         </p>
                     )}
+
+                    {repo.topics?.length > 0 && (
+                        <ul className="flex flex-wrap gap-2 min-w-0">
+                            {repo.topics.slice(0, 5).map(topic => (
+                                <li
+                                    key={topic}
+                                    className="max-w-full rounded-full border border-accent-blue/20 bg-accent-blue/10 px-3 py-1 font-secondary text-xs leading-relaxed text-blue-200 break-words"
+                                >
+                                    {topic}
+                                </li>
+                            ))}
+                        </ul>
+                    )}
                 </div>
 
                 {/* Language and Status Pill */}
@@ -400,11 +413,11 @@ export default function GalleryClient() {
                     )}
                     
                     {isArchived ? (
-                        <span className="bg-accent-teal/10 border border-accent-teal/30 text-accent-teal px-2.5 py-0.5 rounded-full text-[8px] uppercase tracking-widest font-extrabold font-secondary">
+                        <span className="bg-orange-500/10 border border-orange-500/30 text-orange-400 px-2.5 py-0.5 rounded-full text-[8px] uppercase tracking-widest font-extrabold font-secondary">
                             {t("status.archived", { defaultValue: "Archived" })}
                         </span>
                     ) : repo.is_template ? (
-                        <span className="bg-blue-500/10 border border-blue-500/30 text-blue-400 px-2.5 py-0.5 rounded-full text-[8px] uppercase tracking-widest font-extrabold font-secondary">
+                        <span className="bg-green-500/10 border border-green-500/30 text-green-400 px-2.5 py-0.5 rounded-full text-[8px] uppercase tracking-widest font-extrabold font-secondary">
                             {t("status.template", { defaultValue: "Template" })}
                         </span>
                     ) : (
@@ -508,7 +521,7 @@ export default function GalleryClient() {
                                     onClick={() => setSelectedLanguage(lang)}
                                     className={`relative px-4 py-2 rounded-full text-xs font-semibold tracking-wider uppercase transition-all duration-300 border cursor-pointer ${isSelected ? 'bg-accent-blue/10 border-accent-blue text-accent-blue shadow-[0_0_12px_rgba(78,168,255,0.15)]' : 'bg-secondary/40 border-white/5 text-gray-400 hover:text-white hover:border-white/20'}`}
                                 >
-                                    {lang}
+                                    {lang === "All" ? t_projects("filters.all") : lang}
                                 </button>
                             );
                         })}

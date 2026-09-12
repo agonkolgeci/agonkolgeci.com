@@ -1,115 +1,99 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBolt, faSliders, faPerson, faPeopleGroup } from "@fortawesome/free-solid-svg-icons";
-import Article from "@/components/pages/Article";
 
 const SOFT_SKILLS_DATA = [
     { 
         key: "motivation" as const, 
         color: "#4ea8ff", 
-        metric: "ENERGY", 
-        icon: faBolt,
-        glowClass: "glow-card-blue"
+        icon: faBolt
     },
     { 
         key: "adaptation" as const, 
         color: "#62e2d5", 
-        metric: "AGILE", 
-        icon: faSliders,
-        glowClass: "glow-card-teal"
+        icon: faSliders
     },
     { 
         key: "autonomy" as const, 
         color: "#a855f7", 
-        metric: "DRIVE", 
-        icon: faPerson,
-        glowClass: "glow-card-blue"
+        icon: faPerson
     },
     { 
         key: "team_work" as const, 
         color: "#38bdf8", 
-        metric: "COLLAB", 
-        icon: faPeopleGroup,
-        glowClass: "glow-card-teal"
+        icon: faPeopleGroup
     }
 ];
 
-export default function SoftSkillsClient() {
-    const t_soft = useTranslations("skills.soft_skills");
+function SoftSkillBadge({ skill }: { skill: typeof SOFT_SKILLS_DATA[number] }) {
+    const t = useTranslations("skills.soft_skills");
+    const ref = useRef<HTMLDivElement>(null);
+    const reduceMotion = useReducedMotion();
+    // Each badge owns its scroll interval: no shared trigger or timed cascade.
+    const { scrollYProgress } = useScroll({
+        target: ref,
+        offset: ["start 0.92", "start 0.62"]
+    });
+    const opacity = useTransform(scrollYProgress, [0, 1], [0, 1]);
+    const y = useTransform(scrollYProgress, [0, 1], [40, 0]);
+    const clipPath = "polygon(18px 0, 100% 0, calc(100% - 18px) 100%, 0 100%)";
 
     return (
-        <article className="relative w-full bg-transparent text-white overflow-visible selection:bg-accent-blue selection:text-white">
-            {/* Visual guide markers reminiscent of premium Webflow layouts */}
-            <div className="absolute top-0 left-[15%] w-[1px] h-full bg-white/2 pointer-events-none" />
-            <div className="absolute top-0 right-[15%] w-[1px] h-full bg-white/2 pointer-events-none" />
+        <div ref={ref} className="py-5 sm:py-8 lg:py-12">
+            <motion.div
+                style={reduceMotion ? undefined : { opacity, y }}
+                className="relative isolate group"
+            >
+                <div aria-hidden="true" className="absolute inset-0 translate-x-1 translate-y-2 sm:translate-x-2"
+                    style={{ clipPath, backgroundColor: `${skill.color}25` }} />
+                <div className="relative p-px" style={{ clipPath, backgroundColor: `${skill.color}45` }}>
+                    <div className="relative flex flex-col sm:flex-row items-start gap-4 sm:gap-5 px-7 py-6 sm:px-9 sm:py-8 bg-[#0b1019]"
+                        style={{ clipPath }}>
+                        <div aria-hidden="true" className="absolute inset-0 pointer-events-none opacity-60 group-hover:opacity-100 transition-opacity"
+                            style={{ background: `linear-gradient(110deg, ${skill.color}12, transparent 65%)` }} />
+                        <div className="relative flex items-center justify-between w-full sm:w-auto sm:shrink-0">
+                            <div className="flex size-11 items-center justify-center border -skew-x-12"
+                                style={{ borderColor: `${skill.color}40`, backgroundColor: `${skill.color}12`, color: skill.color }}>
+                                <FontAwesomeIcon icon={skill.icon} className="size-5 skew-x-12" />
+                            </div>                        </div>
+                        <div className="relative flex flex-col gap-2 flex-1 min-w-0">
+                            <h3 className="font-primary text-base sm:text-lg font-extrabold tracking-tight uppercase" style={{ color: skill.color }}>
+                                {t(`contents.${skill.key}.title`)}
+                            </h3>
+                            <p className="font-secondary text-sm sm:text-base text-gray-400 leading-relaxed">
+                                {t(`contents.${skill.key}.description`)}
+                            </p>
+                        </div>                    </div>
+                </div>
+            </motion.div>
+        </div>
+    );
+}
 
-            <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 py-24 relative z-10">
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-                    
-                    {/* LEFT COLUMN — Sticky Title & Description */}
-                    <div className="lg:col-span-5 lg:sticky lg:top-[120px] flex flex-col gap-4 select-none">
+export default function SoftSkillsClient() {
+    const t = useTranslations("skills.soft_skills");
+
+    return (
+        <article className="relative w-full bg-transparent text-white selection:bg-accent-blue selection:text-white">
+            <div aria-hidden="true" className="absolute top-0 left-[15%] w-px h-full bg-white/2 pointer-events-none" />
+            <div aria-hidden="true" className="absolute top-0 right-[15%] w-px h-full bg-white/2 pointer-events-none" />
+            <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 py-20 sm:py-24 relative z-10">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-16 items-start">
+                    <div className="lg:col-span-5 lg:sticky lg:top-[120px] lg:pt-12 flex flex-col gap-4">
                         <h2 className="font-primary text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.05]">
-                            {t_soft("title")}
+                            {t("title")}
                         </h2>
-
                         <p className="font-secondary text-sm sm:text-base text-gray-400 max-w-md leading-relaxed">
-                            {t_soft("description")}
+                            {t("description")}
                         </p>
                     </div>
-
-                    {/* RIGHT COLUMN — Stack of compact cards appearing smoothly on scroll */}
-                    <div className="lg:col-span-7 flex flex-col gap-4">
-                        {SOFT_SKILLS_DATA.map((skill) => {
-                            return (
-                                <motion.div
-                                    key={skill.key}
-                                    initial={{ opacity: 0, y: 24 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true, amount: 0.25 }}
-                                    transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                                    whileHover={{ y: -2, transition: { duration: 0.2 } }}
-                                    className="w-full bg-white/[0.03] border border-white/8 border-l-4 rounded-2xl p-5 flex items-start gap-5 overflow-hidden relative interactive-card group hover:border-white/20 transition-all duration-300"
-                                    style={{ borderLeftColor: skill.color }}
-                                    data-cursor-text="SKILL"
-                                >
-                                    {/* Subtle accent glow on left edge */}
-                                    <div
-                                        className="absolute left-0 top-0 bottom-0 w-px pointer-events-none"
-                                        style={{ boxShadow: `4px 0 16px ${skill.color}30` }}
-                                    />
-
-                                    {/* Icon */}
-                                    <div
-                                        className="p-3 border rounded-xl flex items-center justify-center shrink-0 shadow-inner"
-                                        style={{
-                                            borderColor: `${skill.color}25`,
-                                            backgroundColor: `${skill.color}10`,
-                                            color: skill.color
-                                        }}
-                                    >
-                                        <FontAwesomeIcon icon={skill.icon} className="size-5" />
-                                    </div>
-
-                                    {/* Text */}
-                                    <div className="flex flex-col gap-1 flex-1 min-w-0">
-                                        <h3
-                                            className="font-primary text-base font-extrabold tracking-tight uppercase"
-                                            style={{ color: skill.color }}
-                                        >
-                                            {t_soft(`contents.${skill.key}.title`)}
-                                        </h3>
-                                        <p className="font-secondary text-sm text-gray-400 leading-relaxed">
-                                            {t_soft(`contents.${skill.key}.description`)}
-                                        </p>
-                                    </div>
-                                </motion.div>
-                            );
-                        })}
+                    <div className="lg:col-span-7 min-w-0">
+                        {SOFT_SKILLS_DATA.map(skill => <SoftSkillBadge key={skill.key} skill={skill} />)}
                     </div>
-
                 </div>
             </div>
         </article>

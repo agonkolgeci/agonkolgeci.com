@@ -9,6 +9,7 @@ import { faGraduationCap, faLocationDot } from "@fortawesome/free-solid-svg-icon
 import SocialsLinks from "@/components/navigation/socials/SocialsLinks";
 
 
+import useVisibleAnimation from "@/components/utils/hooks/useVisibleAnimation";
 import SkillsClient from "./skills/SkillsClient";
 import EducationClient from "./education/EducationClient";
 import SoftSkillsClient from "./skills/SoftSkillsClient";
@@ -90,8 +91,8 @@ const AboutDesktop = () => {
 
     // Image starts full-screen and clips GPU-side to the right 50% as text slides in (no DOM layout reflow)
     const imageClip = useTransform(
-        scrollYProgress, 
-        [0, 0.38, 1], 
+        scrollYProgress,
+        [0, 0.38, 1],
         ["inset(0% 0% 0% 0%)", "inset(0% 0% 0% 48%)", "inset(0% 0% 0% 48%)"]
     );
     const imageScale = useTransform(scrollYProgress, [0, 1], [1.08, 1]);
@@ -166,6 +167,7 @@ let preloaderHasPlayed = false;
 
 export default function HomeClient() {
     const t = useTranslations("home");
+    const { ref: heroRef, active: heroActive } = useVisibleAnimation();
     const [showPreloader, setShowPreloader] = useState(() => !preloaderHasPlayed);
     const [isLogoLoaded, setIsLogoLoaded] = useState(false);
 
@@ -175,7 +177,7 @@ export default function HomeClient() {
         const timer = setTimeout(() => {
             setShowPreloader(false);
             preloaderHasPlayed = true;
-        }, 3000); // 3s homepage entry preloader on absolute first landing
+        }, 1500); // 1.5s homepage entry preloader on absolute first landing
         return () => clearTimeout(timer);
     }, []);
 
@@ -287,7 +289,7 @@ export default function HomeClient() {
                                         initial={{ y: "115%" }}
                                         animate={{ y: "-115%" }}
                                         transition={{
-                                            duration: 3.0,
+                                            duration: 1.5,
                                             ease: "linear",
                                             repeat: Infinity
                                         }}
@@ -315,7 +317,7 @@ export default function HomeClient() {
             </AnimatePresence>
             
             {/* HERO SECTION */}
-            <div id="home" className="relative w-full h-screen flex flex-col items-center justify-center overflow-hidden scroll-mt-[var(--navbar-height)]">
+            <div ref={heroRef} data-animation-active={heroActive} id="home" className="relative w-full h-screen flex flex-col items-center justify-center overflow-hidden scroll-mt-[var(--navbar-height)]">
                 {/* Atmospheric grid lines with traveling neon glows */}
                 <div className="absolute top-0 left-[20%] w-px h-full bg-white/4 pointer-events-none overflow-hidden">
                     <div
@@ -344,14 +346,14 @@ export default function HomeClient() {
                 <div className="absolute bottom-[30%] left-0 w-full h-px bg-white/4 pointer-events-none" />
 
                 {/* Soft breathing background lighting */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] md:w-[480px] h-[340px] md:h-[480px] bg-accent-blue/6 rounded-full blur-[100px] md:blur-[135px] pointer-events-none animate-[pulse_6s_ease-in-out_infinite]" />
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] md:w-[480px] h-[340px] md:h-[480px] bg-[radial-gradient(ellipse,rgba(78,168,255,0.10),transparent_70%)] pointer-events-none" />
 
                 <div className="flex flex-col items-center justify-center gap-8 max-w-6xl px-6 text-center z-10 select-none">
                     
                     {/* Name — white first word + animated gradient last word */}
                     <div className="relative">
                         <div className="absolute inset-0 -z-10 flex items-center justify-center pointer-events-none">
-                            <div className="w-[85%] h-[55%] bg-accent-blue/20 blur-[120px] rounded-full" />
+                            <div className="w-[85%] h-[55%] bg-[radial-gradient(ellipse,rgba(78,168,255,0.12),transparent_70%)]" />
                         </div>
 
                         <h1 className="font-primary text-[clamp(3rem,13vw,9.5rem)] tracking-tighter font-extrabold leading-[0.9] flex flex-wrap justify-center gap-x-3 sm:gap-x-5">
@@ -360,8 +362,8 @@ export default function HomeClient() {
                                 return (
                                     <motion.span
                                         key={wordIdx}
-                                        initial={{ opacity: 0, y: 50, filter: "blur(12px)" }}
-                                        animate={showPreloader ? { opacity: 0, y: 50, filter: "blur(12px)" } : { opacity: 1, y: 0, filter: "blur(0px)" }}
+                                        initial={{ opacity: 0, y: 50 }}
+                                        animate={showPreloader ? { opacity: 0, y: 50 } : { opacity: 1, y: 0 }}
                                         transition={{ duration: 0.9, delay: 0.15 + wordIdx * 0.18, ease: [0.16, 1, 0.3, 1] }}
                                         className={isLast
                                             ? "inline-block text-gradient drop-shadow-[0_0_45px_rgba(121,157,255,0.35)]"

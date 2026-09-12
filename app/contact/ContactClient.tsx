@@ -8,12 +8,13 @@ import {
     faEnvelope,
     faMapMarkerAlt,
     faClock,
-    faArrowRight,
+    faBolt,
 } from "@fortawesome/free-solid-svg-icons";
 import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 import Link from "next/link";
 
 const MAIL = "contact@agonkolgeci.com";
+const CTA_CLIP_PATH = "polygon(16px 0, 100% 0, calc(100% - 16px) 100%, 0 100%)";
 
 const fadeUp = {
     hidden: { opacity: 0, y: 24 },
@@ -83,22 +84,21 @@ export default function ContactClient() {
                     </p>
 
                     {/* mailto CTA */}
+                    {/* Parallelogram, layered like the soft skills cards: offset shadow, 1px border, body */}
                     <Link
                         href={`mailto:${MAIL}`}
-                        className="group relative inline-flex max-w-full items-center gap-2.5 sm:gap-3 px-5 sm:px-8 py-3.5 sm:py-4 rounded-full font-secondary font-bold text-[11px] sm:text-sm uppercase tracking-wider sm:tracking-widest text-white border border-white/10 bg-white/[0.03] hover:bg-accent-blue hover:border-accent-blue hover:text-black transition-all duration-500 shadow-[0_0_0_0_rgba(78,168,255,0)] hover:shadow-[0_0_40px_rgba(78,168,255,0.3)] select-none"
+                        className="group relative isolate inline-flex max-w-full select-none"
                     >
-                        <FontAwesomeIcon icon={faEnvelope} className="size-4 shrink-0 transition-transform duration-300 group-hover:scale-110" />
-                        <span className="min-w-0 truncate">{MAIL}</span>
-                        {/* 
-                          Kept visible instead of revealed on hover: hidden with `opacity-0`
-                          it still held its slot, so the padding looked heavier on the right
-                          than on the left — very visible once the button is nearly as wide
-                          as a phone screen.
-                        */}
-                        <FontAwesomeIcon
-                            icon={faArrowRight}
-                            className="size-3.5 shrink-0 transition-transform duration-300 group-hover:translate-x-1"
-                        />
+                        <span aria-hidden="true" className="absolute inset-0 translate-x-1.5 translate-y-1.5 bg-accent-blue/20 transition-transform duration-300 group-hover:translate-x-2.5 group-hover:translate-y-2.5"
+                            style={{ clipPath: CTA_CLIP_PATH }} />
+                        <span className="relative flex max-w-full p-px bg-accent-blue/50 transition-colors duration-300 group-hover:bg-accent-blue"
+                            style={{ clipPath: CTA_CLIP_PATH }}>
+                            <span className="flex max-w-full items-center gap-3 sm:gap-4 pl-8 pr-7 sm:pl-10 sm:pr-9 py-3.5 sm:py-4 bg-[#0b1019] text-white transition-colors duration-300 group-hover:bg-[#12213a]"
+                                style={{ clipPath: CTA_CLIP_PATH }}>
+                                <FontAwesomeIcon icon={faEnvelope} className="size-4 sm:size-5 shrink-0 text-accent-blue" />
+                                <span className="min-w-0 truncate font-secondary font-bold text-sm sm:text-lg tracking-wide">{MAIL}</span>
+                            </span>
+                        </span>
                     </Link>
                 </motion.div>
 
@@ -174,7 +174,7 @@ export default function ContactClient() {
                     >
                         <div className="absolute -top-10 -right-10 w-32 h-32 bg-accent-blue/10 rounded-full blur-3xl pointer-events-none" />
                         <div className="flex items-center gap-2.5">
-                            <FontAwesomeIcon icon={faEnvelope} className="size-3.5 text-accent-blue" />
+                            <FontAwesomeIcon icon={faBolt} className="size-3.5 text-accent-blue" />
                             <span className="text-[9px] uppercase tracking-widest text-gray-500 font-extrabold font-secondary">
                                 {t_s("quick_connect")}
                             </span>

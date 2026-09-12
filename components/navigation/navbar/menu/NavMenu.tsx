@@ -63,6 +63,22 @@ export default function NavMenu() {
         };
     }, [pathname]);
 
+    // Lock page scroll while the mobile drawer is open
+    useEffect(() => {
+        if (!opened) return;
+
+        const { body, documentElement } = document;
+        const previousHtmlOverflow = documentElement.style.overflow;
+        const previousBodyOverflow = body.style.overflow;
+        documentElement.style.overflow = "hidden";
+        body.style.overflow = "hidden";
+
+        return () => {
+            documentElement.style.overflow = previousHtmlOverflow;
+            body.style.overflow = previousBodyOverflow;
+        };
+    }, [opened]);
+
     // Handle scroll intercept for same-page anchors
     const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
         if (pathname === "/") {
@@ -72,10 +88,11 @@ export default function NavMenu() {
                 const element = document.getElementById(targetId);
                 if (element) {
                     e.preventDefault();
-                    element.scrollIntoView({ behavior: "smooth" });
                     window.history.pushState(null, "", href);
                     setActiveHash("#" + targetId);
                     closeMenu();
+                    // Wait for the scroll lock to be released before scrolling
+                    window.requestAnimationFrame(() => element.scrollIntoView({ behavior: "smooth" }));
                 }
             }
         } else {
@@ -151,10 +168,10 @@ export default function NavMenu() {
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: "-100%" }}
                             transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
-                            className="fixed inset-0 w-screen h-screen bg-[#030303]/98 z-[9999] flex flex-col justify-between p-6 sm:p-12 overflow-hidden"
+                            className="fixed inset-0 w-screen h-screen bg-[#030303] z-[9999] flex flex-col justify-between px-6 md:px-12 pb-6 sm:pb-10 overflow-hidden overscroll-none touch-none"
                         >
-                            {/* Drawer Header */}
-                            <div className="flex flex-row items-center justify-between w-full border-b border-white/5 pb-6">
+                            {/* Drawer Header: same height/padding as the site header so logo and button don't jump */}
+                            <div className="flex flex-row items-center justify-between w-full h-[72px] shrink-0 border-b border-white/5">
                                 <div className="flex items-center w-[130px] h-[34px] relative shrink-0" onClick={closeMenu}>
                                     <NavLogo />
                                 </div>
@@ -167,12 +184,12 @@ export default function NavMenu() {
                             </div>
 
                             {/* Drawer Links Matrix */}
-                            <div className="flex-1 flex flex-col justify-center py-12">
-                                <motion.ul 
+                            <div className="flex-1 min-h-0 flex flex-col justify-center py-8">
+                                <motion.ul
                                     variants={containerVariants}
                                     initial="hidden"
                                     animate="show"
-                                    className="flex flex-col gap-5 sm:gap-8 items-start pl-2 sm:pl-6"
+                                    className="flex flex-col gap-4 sm:gap-6 items-start max-w-full"
                                 >
                                     {links.map(link => {
                                         const linkHash = link.href.includes("#") ? link.href.substring(link.href.indexOf("#")) : "";
@@ -186,7 +203,7 @@ export default function NavMenu() {
                                                 <Link 
                                                     href={link.href} 
                                                     onClick={(e) => handleNavClick(e, link.href)}
-                                                    className={`font-primary text-[clamp(1.5rem,8vw,3.5rem)] leading-[1.1] font-extrabold tracking-tight uppercase transition-all duration-300 block hover:translate-x-3 select-none hover:text-accent-blue ${isActive ? "text-accent-blue font-black" : "text-gray-500 hover:text-white"}`}
+                                                    className={`font-primary text-[clamp(1.5rem,6.5vw,3.25rem)] leading-[1.1] font-extrabold tracking-tight uppercase break-words transition-all duration-300 block hover:translate-x-2 select-none hover:text-accent-blue ${isActive ? "text-accent-blue font-black" : "text-gray-500 hover:text-white"}`}
                                                 >
                                                     {link.name}
                                                 </Link>

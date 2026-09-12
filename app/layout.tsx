@@ -108,10 +108,10 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 
           <main className="w-full relative min-h-screen">
             {/* Global full-bleed ambient background pattern */}
-            <div className="absolute inset-0 overflow-hidden pointer-events-none z-0 transform-gpu">
+            <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
               {/* Tech dot-grid (edges faded horizontally so it never cuts net) */}
               <div
-                className="absolute inset-0 transform-gpu"
+                className="absolute inset-0"
                 style={{
                   backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.13) 1px, transparent 1px)",
                   backgroundSize: "30px 30px",
