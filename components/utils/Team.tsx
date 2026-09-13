@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ExternalURL } from "./ExternalLink";
 import { useTranslations } from "next-intl";
 
-export const AGON_KOLGECI: ExternalURL = { name: "Agon Kolgeci", href: "https://www.linkedin.com/in/agon-kolgeci-193aa2266/" };
+export const AGON_KOLGECI: ExternalURL = { name: "Agon Kolgeci", href: "https://www.linkedin.com/in/agon-kolgeci/" };
 export const FABIEN_GRAYSSAGUEL: ExternalURL = { name: "Fabien Grayssaguel", href: "https://playze.org/"};
 export const LEO_RIVIERES: ExternalURL = { name: "Léo Rivieres", href: "https://www.linkedin.com/in/l%C3%A9o-rivieres-743489245/"};
 export const ANTOINE_MAENDLY: ExternalURL = { name: "Antoine Maendly", href: "https://github.com/antoinemdly" };

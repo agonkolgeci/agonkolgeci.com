@@ -201,18 +201,21 @@
                     "title": "Master of Computer Science",
                     "institution": "University of Geneva",
                     "description": "The Master of Science in Computer Science deepens advanced expertise in software engineering, artificial intelligence, distributed systems, cybersecurity, and applied research.",
+                    "summary": "Software engineering, artificial intelligence, distributed systems, computer security and applied research.",
                     "date": "2026 - present"
                 },
                 "bachelor": { 
                     "title": "Bachelor of Computer Science",
                     "institution": "University of Geneva",
                     "description": "The Bachelor of Science in Computer Science provides a solid foundation in algorithms, computer systems and security, software engineering, digital imaging, theoretical computer science and multimedia information processing.",
+                    "summary": "Algorithms, computer systems and security, software engineering, digital imaging and theoretical computer science.",
                     "date": "2023 - 2026"
                 },
                 "stael": { 
                     "title": "General and Technological Baccalaureate",
                     "institution": "Madame de Staël High School",
                     "description": "Specialization in Mathematics & Physics-Chemistry.",
+                    "summary": "Specialization in mathematics and physics-chemistry.",
                     "date": "2020 - 2023"
                 }
             }
@@ -280,47 +283,55 @@
                 "unige-events": {
                     "title": "UNIGE Events",
                     "date": "February 2026 - May 2026",
-                    "description": "A university capstone project developed at the University of Geneva (UNIGE). It is a centralized web platform designed for students and campus associations to create, share, and register for campus events, built on a modern microservices architecture."
+                    "description": "A university capstone project developed at the University of Geneva (UNIGE). It is a centralized web platform designed for students and campus associations to create, share, and register for campus events, built on a modern microservices architecture.",
+                    "summary": "Team capstone project for the Bachelor: a web platform where students and associations publish campus events and sign up for them. Microservices architecture."
                 },
                 "redcap-swisscom-module": {
                     "title": "REDCap HUG Module",
                     "date": "February 2025 - May 2025",
-                    "description": "As part of a semester project, I contributed to the development of a REDCap module integrating SMS delivery through the Swisscom API. The main objective was to provide a seamless user experience while optimizing sending costs and improving the management of delivery receipts."
+                    "description": "As part of a semester project, I contributed to the development of a REDCap module integrating SMS delivery through the Swisscom API. The main objective was to provide a seamless user experience while optimizing sending costs and improving the management of delivery receipts.",
+                    "summary": "Semester project: a REDCap module for the HUG that sends SMS through the Swisscom API, with lower sending costs and better delivery receipt tracking."
                 },
                 "swerc2024": {
                     "title": "SWERC 2024",
                     "date": "November 30 & December 1 2024",
-                    "description": "SWERC is a 5-hour programming contest for teams of three students, focused on algorithmic problem solving and practical coding. This competition serves as the regional selection phase for the Europe Championship and the International Collegiate Programming Contest."
+                    "description": "SWERC is a 5-hour programming contest for teams of three students, focused on algorithmic problem solving and practical coding. This competition serves as the regional selection phase for the Europe Championship and the International Collegiate Programming Contest.",
+                    "summary": "5-hour algorithmic contest for teams of three, a qualifier for the European Championship and the ICPC."
                 },
 
                 "project-family": {
                     "title": "Project Family",
                     "date": "April 2021 - present",
-                    "description": "Project Family is a modded survival Minecraft server with its own launcher on the latest version, Minecraft 1.21, featuring a large and active community."
+                    "description": "Project Family is a modded survival Minecraft server with its own launcher on the latest version, Minecraft 1.21, featuring a large and active community.",
+                    "summary": "Modded survival Minecraft server on version 1.21, with its own launcher and an active community."
                 },
 
                 "nexus": {
                     "title": "Nexus",
                     "date": "2024",
-                    "description": "Nexus is my Minecraft mini-games server. The main purpose of this server is to list all the creations I've made over the years on Minecraft."
+                    "description": "Nexus is my Minecraft mini-games server. The main purpose of this server is to list all the creations I've made over the years on Minecraft.",
+                    "summary": "Minecraft mini-games server that gathers the creations I have built over the years."
                 },
 
                 "stranger-hide": {
                     "title": "Stranger Hide",
                     "date": "2021 - 2024",
-                    "description": "Stranger Hide is a hide-and-seek server in the theme of the Stranger Things series."
+                    "description": "Stranger Hide is a hide-and-seek server in the theme of the Stranger Things series.",
+                    "summary": "Hide-and-seek Minecraft server themed on the Stranger Things series."
                 },
 
                 "yadbna": {
                     "title": "YADBNA",
                     "date": "2020 - present",
-                    "description": "YADBNA is a Discord bot that features graphic level cards, visual leaderboards, invite tracking with real metrics, and advanced management tools such as custom self-roles and auto-cleanup temporary voice channels."
+                    "description": "YADBNA is a Discord bot that features graphic level cards, visual leaderboards, invite tracking with real metrics, and advanced management tools such as custom self-roles and auto-cleanup temporary voice channels.",
+                    "summary": "Discord bot with level cards, leaderboards, invite tracking, custom roles and temporary voice channels."
                 },
 
                 "berkasia": {
                     "title": "Berkasia",
                     "date": "2017 - 2021",
-                    "description": "Minecraft PVP/Faction server featuring new events, a carefully thought-out economy and advanced systems to help you achieve your goals. Berkasia featured a completely Farm2Win system."
+                    "description": "Minecraft PVP/Faction server featuring new events, a carefully thought-out economy and advanced systems to help you achieve your goals. Berkasia featured a completely Farm2Win system.",
+                    "summary": "PvP/Faction Minecraft server with events and an in-game economy, fully Farm2Win."
                 }
             },
             "teammates": "Teammates"
@@ -494,6 +505,28 @@
         },
 
         "back_to_top": "Back to top"
+    },
+
+    "cv": {
+        "title": "Curriculum Vitae",
+        "profile": "Profile",
+        "profile_text": "Passionate about computers since I was young, I taught myself to program long before it became my field of study. Now a Master's student in Computer Science at the University of Geneva, I keep building my own projects alongside my courses.",
+        "contact": "Contact",
+        "location": "Geneva, Switzerland",
+        "education": "Education",
+        "experiences": "Professional experience",
+        "projects": "Projects",
+        "skills": "Technical skills",
+        "languages": "Languages",
+        "stack": "Frameworks and infrastructure",
+        "tools": "Tools",
+        "spoken_languages": "Languages",
+        "language_names": {
+            "french": "French",
+            "albanian": "Albanian",
+            "english": "English"
+        },
+        "native": "native"
     },
 
     "tags": {

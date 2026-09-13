@@ -7,47 +7,7 @@ import Image from "next/image";
 import Article from "@/components/pages/Article";
 import { retrieveLanguageByName } from "@/components/utils/ui/Language";
 import MacBook, { DECK_OVERHANG } from "@/components/utils/ui/MacBook";
-
-// All 32 GitHub core technologies and tools divided into 3 scroll steps (10 in step 1, 9 in step 2, 13 in step 3)
-const TECH_CONSTELLATION = [
-    // Step 1: Core Languages (10 items)
-    { name: "Java", color: "#f89820", angle: 36, ring: 2, step: 1 },
-    { name: "JavaScript", color: "#f7df1e", angle: 72, ring: 1, step: 1 },
-    { name: "TypeScript", color: "#3178c6", angle: 0, ring: 1, step: 1 },
-    { name: "PHP", color: "#777bb4", angle: 0, ring: 2, step: 1 },
-    { name: "Python", color: "#3776ab", angle: 72, ring: 2, step: 1 },
-    { name: "C", color: "#a8b9cc", angle: 0, ring: 2, step: 1 },
-    { name: "C++", color: "#00599c", angle: 108, ring: 2, step: 1 },
-    { name: "HTML", color: "#e34f26", angle: 0, ring: 2, step: 1 },
-    { name: "CSS", color: "#1572b6", angle: 0, ring: 2, step: 1 },
-    { name: "Sass", color: "#cc6699", angle: 0, ring: 2, step: 1 },
-    
-    // Step 2: Frameworks, Databases & Core Ops (9 items)
-    { name: "Node", color: "#339933", angle: 288, ring: 1, step: 2 },
-    { name: "React", color: "#61dafb", angle: 144, ring: 1, step: 2 },
-    { name: "NextJS", color: "#ffffff", angle: 216, ring: 1, step: 2 },
-    { name: "Tailwind CSS", color: "#38bdf8", angle: 0, ring: 2, step: 2 },
-    { name: "Redis", color: "#dc382d", angle: 324, ring: 2, step: 2 },
-    { name: "MySQL", color: "#4479a1", angle: 252, ring: 2, step: 2 },
-    { name: "MongoDB", color: "#47a248", angle: 288, ring: 2, step: 2 },
-    { name: "Docker", color: "#2496ed", angle: 144, ring: 2, step: 2 },
-    { name: "Cloudflare", color: "#f38020", angle: 0, ring: 2, step: 2 },
-    
-    // Step 3: Development Tools, OS & Automations (13 items)
-    { name: "VSCode", color: "#007acc", angle: 0, ring: 2, step: 3 },
-    { name: "IntelliJ IDEA", color: "#fe315d", angle: 0, ring: 2, step: 3 },
-    { name: "Git", color: "#f05032", angle: 216, ring: 2, step: 3 },
-    { name: "GitHub", color: "#ffffff", angle: 0, ring: 2, step: 3 },
-    { name: "GitLab", color: "#fc6d26", angle: 0, ring: 2, step: 3 },
-    { name: "Linux", color: "#ffffff", angle: 180, ring: 2, step: 3 },
-    { name: "Jenkins", color: "#d24939", angle: 0, ring: 2, step: 3 },
-    { name: "Bash", color: "#4eaa25", angle: 0, ring: 2, step: 3 },
-    { name: "PowerShell", color: "#5391fe", angle: 0, ring: 2, step: 3 },
-    { name: "Maven", color: "#c71a36", angle: 0, ring: 2, step: 3 },
-    { name: "Gradle", color: "#00c6be", angle: 0, ring: 2, step: 3 },
-    { name: "Postman", color: "#ff6c37", angle: 0, ring: 2, step: 3 },
-    { name: "StackOverflow", color: "#f58025", angle: 0, ring: 2, step: 3 }
-];
+import { TECH_CONSTELLATION } from "@/data/portfolio";
 
 // Orbit geometry, shared by the badges and by the code that has to know how far
 // down the arcs reach in order to balance the pinned frame.

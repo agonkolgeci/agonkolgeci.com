@@ -38,3 +38,8 @@ next-env.d.ts
 
 # contentlayer
 .contentlayer
+
+# claude personal config
+.claude/settings.local.json
+.claude/CLAUDE.local.md
+.claude/*.local.json

@@ -92,7 +92,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     email: "contact@agonkolgeci.com",
     sameAs: [
       "https://github.com/agonkolgeci",
-      "https://linkedin.com/in/agon-kolgeci-193aa2266/"
+      "https://www.linkedin.com/in/agon-kolgeci/"
     ]
   };
 

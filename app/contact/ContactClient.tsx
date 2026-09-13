@@ -196,7 +196,7 @@ export default function ContactClient() {
                                     blank: true,
                                 },
                                 {
-                                    href: "https://linkedin.com/in/agon-kolgeci-193aa2266/",
+                                    href: "https://www.linkedin.com/in/agon-kolgeci/",
                                     icon: faLinkedin,
                                     iconClass: "text-blue-400",
                                     label: "linkedin.com/in/agon-kolgeci",

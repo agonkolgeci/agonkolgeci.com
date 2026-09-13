@@ -201,18 +201,21 @@
                     "title": "Master en Sciences Informatiques",
                     "institution": "Université de Genève",
                     "description": "Le Master en sciences informatiques approfondit les compétences avancées en génie logiciel, intelligence artificielle, systèmes distribués, sécurité informatique et recherche appliquée.",
+                    "summary": "Génie logiciel, intelligence artificielle, systèmes distribués, sécurité informatique et recherche appliquée.",
                     "date": "2026 - aujourd'hui"
                 },
                 "bachelor": {
                     "title": "Bachelor en Sciences Informatiques",
                     "institution": "Université de Genève",
                     "description": "Le Bachelor en sciences informatiques permet d'acquérir une solide formation de base en algorithmique, en systèmes informatiques et sécurité, en génie logiciel, en imagerie numérique, en informatique théorique et en traitement de l'information multimédia.",
+                    "summary": "Algorithmique, systèmes informatiques et sécurité, génie logiciel, imagerie numérique et informatique théorique.",
                     "date": "2023 - 2026"
                 },
                 "stael": {
                     "title": "Baccalauréat général et technologique",
                     "institution": "Lycée Madame de Staël",
                     "description": "Spécialité Mathématiques & Physique-Chimie.",
+                    "summary": "Spécialités mathématiques et physique-chimie.",
                     "date": "2020 - 2023"
                 }
             }
@@ -280,47 +283,55 @@
                 "unige-events": {
                     "title": "UNIGE Events",
                     "date": "Février 2026 - Mai 2026",
-                    "description": "Projet universitaire de fin d'études réalisé à l'Université de Genève (UNIGE). Il s'agit d'une plateforme web centralisée permettant aux étudiants et associations de créer, partager et s'inscrire à des événements sur le campus, avec une architecture robuste basée sur des microservices."
+                    "description": "Projet universitaire de fin d'études réalisé à l'Université de Genève (UNIGE). Il s'agit d'une plateforme web centralisée permettant aux étudiants et associations de créer, partager et s'inscrire à des événements sur le campus, avec une architecture robuste basée sur des microservices.",
+                    "summary": "Projet de fin de Bachelor en équipe : plateforme web où les étudiants et les associations publient des événements du campus et s'y inscrivent. Architecture en microservices."
                 },
                 "redcap-swisscom-module": {
                     "title": "Module REDCap HUG",
                     "date": "Février 2025 - Mai 2025",
-                    "description": "Dans le cadre d’un projet de semestre, j’ai pu participer au développement d’un module REDCap intégrant l’envoi de SMS via l’API de Swisscom. L’objectif principal était d’offrir une solution transparente pour l’utilisateur, tout en optimisant les coûts d’envoi et en améliorant la gestion des accusés de réception."
+                    "description": "Dans le cadre d’un projet de semestre, j’ai pu participer au développement d’un module REDCap intégrant l’envoi de SMS via l’API de Swisscom. L’objectif principal était d’offrir une solution transparente pour l’utilisateur, tout en optimisant les coûts d’envoi et en améliorant la gestion des accusés de réception.",
+                    "summary": "Projet de semestre : module REDCap pour les HUG qui envoie des SMS via l'API Swisscom, avec des coûts d'envoi réduits et un meilleur suivi des accusés de réception."
                 },
                 "swerc2024": {
                     "title": "SWERC 2024",
                     "date": "30 novembre & 1 décembre 2024",
-                    "description": "SWERC est un concours de programmation de 5 heures pour des équipes de trois étudiants, axé sur la résolution de problèmes algorithmiques et la programmation pratique. Cette compétition sert de phase de sélection régionale pour le Championnat d'Europe et le Concours International de Programmation Collegiale."
+                    "description": "SWERC est un concours de programmation de 5 heures pour des équipes de trois étudiants, axé sur la résolution de problèmes algorithmiques et la programmation pratique. Cette compétition sert de phase de sélection régionale pour le Championnat d'Europe et le Concours International de Programmation Collegiale.",
+                    "summary": "Concours d'algorithmique de 5 heures par équipes de trois, qualificatif pour le championnat d'Europe et l'ICPC."
                 },
 
                 "project-family": {
                     "title": "Project Family",
                     "date": "Avril 2021 - présent",
-                    "description": "Project Family est un serveur Minecraft survie moddée sous Lanceur dans la toute dernière version Minecraft 1.21, avec une grande communauté active."
+                    "description": "Project Family est un serveur Minecraft survie moddée sous Lanceur dans la toute dernière version Minecraft 1.21, avec une grande communauté active.",
+                    "summary": "Serveur Minecraft survie moddé en 1.21, avec son propre launcher et une communauté active."
                 },
 
                 "nexus": {
                     "title": "Nexus",
                     "date": "2024",
-                    "description": "Nexus est mon serveur Minecraft de mini-jeux. L'objectif principal de ce serveur est de lister toutes les créations que j'ai réalisées au fil des années sur Minecraft."
+                    "description": "Nexus est mon serveur Minecraft de mini-jeux. L'objectif principal de ce serveur est de lister toutes les créations que j'ai réalisées au fil des années sur Minecraft.",
+                    "summary": "Serveur Minecraft de mini-jeux qui regroupe les créations que j'ai réalisées au fil des années."
                 },
 
                 "stranger-hide": {
                     "title": "Stranger Hide",
                     "date": "2021 - 2024",
-                    "description": "Stranger Hide est un serveur cache-cache sur le thème de la série Stranger Things."
+                    "description": "Stranger Hide est un serveur cache-cache sur le thème de la série Stranger Things.",
+                    "summary": "Serveur Minecraft de cache-cache sur le thème de la série Stranger Things."
                 },
 
                 "yadbna": {
                     "title": "YADBNA",
                     "date": "2020 - présent",
-                    "description": "YADBNA est un bot Discord qui propose des cartes de niveau graphiques, des classements visuels, un suivi précis des invitations et des outils de gestion avancés tels que des rôles personnalisables et des salons vocaux temporaires automatiques."
+                    "description": "YADBNA est un bot Discord qui propose des cartes de niveau graphiques, des classements visuels, un suivi précis des invitations et des outils de gestion avancés tels que des rôles personnalisables et des salons vocaux temporaires automatiques.",
+                    "summary": "Bot Discord avec cartes de niveau, classements, suivi des invitations, rôles personnalisables et salons vocaux temporaires."
                 },
 
                 "berkasia": {
                     "title": "Berkasia",
                     "date": "2017 - 2021",
-                    "description": "Serveur Minecraft PVP/Faction avec de nouveaux événements, une économie bien pensée et des systèmes avancés pour vous aider à atteindre vos objectifs. Berkasia proposait un système totalement Farm2Win."
+                    "description": "Serveur Minecraft PVP/Faction avec de nouveaux événements, une économie bien pensée et des systèmes avancés pour vous aider à atteindre vos objectifs. Berkasia proposait un système totalement Farm2Win.",
+                    "summary": "Serveur Minecraft PvP/Faction avec des événements et une économie en jeu, entièrement Farm2Win."
                 }
             },
             "teammates": "Coéquipiers"
@@ -494,6 +505,28 @@
         },
 
         "back_to_top": "Revenir en haut"
+    },
+
+    "cv": {
+        "title": "Curriculum Vitae",
+        "profile": "Profil",
+        "profile_text": "Passionné d'informatique depuis mon plus jeune âge, j'ai appris à programmer en autodidacte bien avant d'en faire mes études. Aujourd'hui en Master de sciences informatiques à l'Université de Genève, je continue de développer mes propres projets à côté des cours.",
+        "contact": "Contact",
+        "location": "Genève, Suisse",
+        "education": "Formation",
+        "experiences": "Expérience professionnelle",
+        "projects": "Projets",
+        "skills": "Compétences techniques",
+        "languages": "Langages",
+        "stack": "Frameworks et infrastructure",
+        "tools": "Outils",
+        "spoken_languages": "Langues",
+        "language_names": {
+            "french": "Français",
+            "albanian": "Albanais",
+            "english": "Anglais"
+        },
+        "native": "langue maternelle"
     },
 
     "tags": {

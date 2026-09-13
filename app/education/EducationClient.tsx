@@ -6,20 +6,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendarAlt } from "@fortawesome/free-solid-svg-icons";
-
-interface School {
-    key: string;
-    url: string;
-    image?: string;
-    glow: "lime" | "orange";
-}
-
-// Academic Milestones Data (Most Recent First)
-const SCHOOLS: School[] = [
-    { key: "master", url: "https://www.unige.ch/bachelor-master/en/masters/computer-science", image: "/education/unige.svg", glow: "lime" },
-    { key: "bachelor", url: "https://www.unige.ch/bachelor-master/bachelors/sciences-informatiques", image: "/education/unige.svg", glow: "orange" },
-    { key: "stael", url: "https://madame-de-stael.ent.auvergnerhonealpes.fr/", glow: "lime" }
-];
+import { SCHOOLS } from "@/data/portfolio";
 
 export default function EducationClient() {
     const t = useTranslations("education");

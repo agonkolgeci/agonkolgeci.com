@@ -12,42 +12,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import Article from "@/components/pages/Article";
 import { retrieveLanguageByName } from "@/components/utils/ui/Language";
-
-interface Experience {
-    readonly key: string;
-    readonly image: string;
-    readonly tags: readonly string[];
-    readonly tasks: readonly string[];
-    readonly languages: readonly string[];
-    readonly links?: readonly { readonly name: string; readonly href: string }[];
-}
-
-const PROFESSIONAL_EXPERIENCES: readonly Experience[] = [
-    {
-        key: "unige_are",
-        image: "/experiences/unige.jpg",
-        tags: ["are"],
-        tasks: ["1", "2"],
-        languages: []
-    },
-    {
-        key: "world-heberg",
-        image: "/experiences/world-heberg.png",
-        tags: ["volunteering"],
-        tasks: ["1", "2"],
-        languages: ["Java", "JavaScript"]
-    },
-    {
-        key: "buro_plus",
-        image: "/experiences/buroplus.webp",
-        links: [
-            { name: "Website", href: "https://www.buroplus.com/" }
-        ],
-        tags: ["internship"],
-        tasks: ["1", "2", "3", "4"],
-        languages: []
-    }
-];
+import { PROFESSIONAL_EXPERIENCES } from "@/data/portfolio";
 
 function TechIcon({ name }: { name: string }) {
     const url = retrieveLanguageByName(name);

@@ -16,7 +16,7 @@ export default function SocialsLinks(props: React.ComponentPropsWithoutRef<"ul">
         <ul {...props}>
             <SocialLink href="mailto:contact@agonkolgeci.com"><FontAwesomeIcon icon={faEnvelope} /></SocialLink>
             <SocialLink href="https://github.com/agonkolgeci"><FontAwesomeIcon icon={faGithub} /></SocialLink>
-            <SocialLink href="https://linkedin.com/in/agon-kolgeci-193aa2266/"><FontAwesomeIcon icon={faLinkedin} /></SocialLink>
+            <SocialLink href="https://www.linkedin.com/in/agon-kolgeci/"><FontAwesomeIcon icon={faLinkedin} /></SocialLink>
         </ul>
     );
 }

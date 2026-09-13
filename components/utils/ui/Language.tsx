@@ -46,7 +46,7 @@ export function retrieveLanguageByName(name: string): string {
         case "discord api": return "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/discordjs/discordjs-original.svg";
         case "quarkus": return "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/quarkus/quarkus-original.svg";
         case "kong": return "https://cdn.simpleicons.org/kong";
-        case "netty": return "https://skillicons.dev/icons?i=netty";
+        case "electron": return "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/electron/electron-original.svg";
 
         default: return "";
     }

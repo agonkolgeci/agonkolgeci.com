@@ -4,30 +4,7 @@ import { useTranslations } from "next-intl";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBolt, faSliders, faPerson, faPeopleGroup } from "@fortawesome/free-solid-svg-icons";
-
-const SOFT_SKILLS_DATA = [
-    { 
-        key: "motivation" as const, 
-        color: "#4ea8ff", 
-        icon: faBolt
-    },
-    { 
-        key: "adaptation" as const, 
-        color: "#62e2d5", 
-        icon: faSliders
-    },
-    { 
-        key: "autonomy" as const, 
-        color: "#a855f7", 
-        icon: faPerson
-    },
-    { 
-        key: "team_work" as const, 
-        color: "#38bdf8", 
-        icon: faPeopleGroup
-    }
-];
+import { SOFT_SKILLS_DATA } from "@/data/portfolio";
 
 function SoftSkillBadge({ skill }: { skill: typeof SOFT_SKILLS_DATA[number] }) {
     const t = useTranslations("skills.soft_skills");
