@@ -161,7 +161,7 @@ export default function CvDocument({ data }: { data: CvData }) {
     const { labels, contact } = data;
 
     return (
-        <Document title={`${data.name} — ${labels.title}`} author={data.name} subject={data.role} language={data.locale}>
+        <Document title={`${data.name} - ${labels.title}`} author={data.name} subject={data.role} language={data.locale}>
             <Page size="A4" style={styles.page}>
                 <View fixed style={styles.sidebarBackground} />
 

@@ -34,7 +34,7 @@ export const viewport: Viewport = {
 export async function generateMetadata({ params }: MetadataProps): Promise<Metadata> {
   const t = await getPageTranslations({ namespace: "global", params });
   const devPrefix = isDev ? "[DEV]" : ""
-  // Home tab title = "Agon KOLGECI — Portfolio"; the card reuses this same title.
+  // Home tab title = "Agon KOLGECI - Portfolio"; the card reuses this same title.
   const homeTitle = formatTitle(t("title"), t("label"));
   const card = await getSocialCard(params, "/", { title: homeTitle, description: t("portfolio") });
 
@@ -43,7 +43,7 @@ export async function generateMetadata({ params }: MetadataProps): Promise<Metad
 
     title: {
       default: `${devPrefix} ${homeTitle}`,
-      template: `${devPrefix} ${t("title")} — %s`
+      template: `${devPrefix} ${t("title")} - %s`
     },
     description: t("description"),
 

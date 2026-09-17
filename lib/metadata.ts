@@ -32,15 +32,15 @@ export async function getPageTranslations(metadata: PageMetadataProps) {
   return await getTranslations({ locale, namespace: metadata.namespace });
 }
 
-/** Full title shown in the tab and the social card, e.g. "Agon KOLGECI — Terms". */
+/** Full title shown in the tab and the social card, e.g. "Agon KOLGECI - Terms". */
 export function formatTitle(name: string, label: string) {
-  return `${name} — ${label}`;
+  return `${name} - ${label}`;
 }
 
 /**
  * Shared social-share card structure, identical on every page:
  *   small grey line → job title (global.role)
- *   card title      → "Agon KOLGECI — <label>" (passed in)
+ *   card title      → "Agon KOLGECI - <label>" (passed in)
  *   thumbnail       → square icon with background
  * The `title`, `description` and canonical `url` are passed in per page. A
  * nested openGraph replaces (does not merge with) the parent's, so every field
@@ -88,8 +88,8 @@ export async function getPageMetadata(metadata: PageMetadataProps): Promise<Meta
   const card = await getSocialCard(metadata.params, path, { title: fullTitle, description });
 
   return {
-    // Short label runs through the root "Agon KOLGECI — %s" template for the tab
-    // title; the card title uses the full "Agon KOLGECI — <label>" string.
+    // Short label runs through the root "Agon KOLGECI - %s" template for the tab
+    // title; the card title uses the full "Agon KOLGECI - <label>" string.
     title: label,
     description,
 
