@@ -3,7 +3,7 @@
 import { faBars, faClose } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import { useCallback, useState, useEffect } from "react";
+import { useCallback, useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 import Link from "next/link";
@@ -21,6 +21,15 @@ export default function NavMenu() {
     const toggleMenu = useCallback(() => setOpened(curr => !curr), []);
     const closeMenu = useCallback(() => setOpened(false), []);
 
+    // True while a click-triggered smooth scroll is running, so the sections it passes through don't steal the highlight
+    const scrollingToTarget = useRef(false);
+    const settleTimer = useRef<number | undefined>(undefined);
+
+    const releaseScrollLockAfter = useCallback((delay: number) => {
+        window.clearTimeout(settleTimer.current);
+        settleTimer.current = window.setTimeout(() => { scrollingToTarget.current = false; }, delay);
+    }, []);
+
     // IntersectionObserver to highlight active sections on scroll
     useEffect(() => {
         if (pathname !== "/") return;
@@ -32,6 +41,8 @@ export default function NavMenu() {
         };
 
         const observerCallback = (entries: IntersectionObserverEntry[]) => {
+            if (scrollingToTarget.current) return;
+
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     const id = entry.target.id;
@@ -57,11 +68,27 @@ export default function NavMenu() {
             }
         });
 
+        // Release the click lock once scrolling has settled
+        // Prefer scrollend; browsers without it fall back to waiting for scroll events to stop
+        const hasScrollEnd = "onscrollend" in window;
+        const onScroll = () => {
+            if (scrollingToTarget.current) releaseScrollLockAfter(hasScrollEnd ? 1000 : 150);
+        };
+        const onScrollEnd = () => {
+            if (scrollingToTarget.current) releaseScrollLockAfter(0);
+        };
+        window.addEventListener("scroll", onScroll, { passive: true });
+        window.addEventListener("scrollend", onScrollEnd);
+
         return () => {
             window.cancelAnimationFrame(frame);
+            window.clearTimeout(settleTimer.current);
+            window.removeEventListener("scroll", onScroll);
+            window.removeEventListener("scrollend", onScrollEnd);
+            scrollingToTarget.current = false;
             observer.disconnect();
         };
-    }, [pathname]);
+    }, [pathname, releaseScrollLockAfter]);
 
     // Lock page scroll while the mobile drawer is open
     useEffect(() => {
@@ -92,6 +119,9 @@ export default function NavMenu() {
                     setActiveHash("#" + targetId);
                     closeMenu();
                     // Wait for the scroll lock to be released before scrolling
+                    // Fallback release in case the page is already at the target and never scrolls
+                    scrollingToTarget.current = true;
+                    releaseScrollLockAfter(1000);
                     window.requestAnimationFrame(() => element.scrollIntoView({ behavior: "smooth" }));
                 }
             }

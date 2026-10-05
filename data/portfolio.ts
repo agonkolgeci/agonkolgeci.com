@@ -173,7 +173,7 @@ export const PROJECTS = [
         type: "academic",
         image: "/gallery/unige-events.jpg",
         links: [
-            { name: "Website", href: "https://pinfo6.p-info.net/" }
+            { name: "GitHub", icon: faGithub, href: "https://github.com/unige-pinfo6-2026/unige-events" }
         ],
         tags: ["tech-lead", "devops", "unige"],
         languages: ["TypeScript", "React", "Java", "Quarkus", "Kong", "Kubernetes"],
