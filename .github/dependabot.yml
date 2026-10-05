@@ -10,3 +10,9 @@ updates:
       dependencies:
         patterns:
           - "*"
+    ignore:
+      # eslint-config-next does not support these majors yet
+      - dependency-name: "eslint"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "typescript"
+        update-types: ["version-update:semver-major"]
