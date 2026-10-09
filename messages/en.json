@@ -283,8 +283,8 @@
                 "unige-events": {
                     "title": "UNIGE Events",
                     "date": "February 2026 - May 2026",
-                    "description": "A university capstone project developed at the University of Geneva (UNIGE). It is a centralized web platform designed for students and campus associations to create, share, and register for campus events, built on a modern microservices architecture.",
-                    "summary": "Team capstone project for the Bachelor: a web platform where students and associations publish campus events and sign up for them. Microservices architecture."
+                    "description": "A university team project developed at the University of Geneva (UNIGE). It is a centralized web platform designed for students and campus associations to create, share, and register for campus events, built on a modern microservices architecture.",
+                    "summary": "University team project: a web platform where students and associations publish campus events and sign up for them. Microservices architecture."
                 },
                 "redcap-swisscom-module": {
                     "title": "REDCap HUG Module",

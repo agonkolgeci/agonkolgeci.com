@@ -6,6 +6,7 @@ import { renderToBuffer } from "@react-pdf/renderer";
 import { createTranslator } from "next-intl";
 
 import CvDocument, { CvData } from "@/lib/cv/CvDocument";
+import { compactCv } from "@/lib/cv/compact";
 import { CONTACT, PROFESSIONAL_EXPERIENCES, PROJECTS, SCHOOLS, SPOKEN_LANGUAGES, TECH_CONSTELLATION } from "@/data/portfolio";
 import { Locale, locales } from "@/i18n/locales";
 import { getUserLocale } from "@/services/locale";
@@ -22,8 +23,8 @@ const techLabel = (name: string) => TECH_LABELS[name] ?? name;
 const CV_HIDDEN_TECH = ["VSCode", "IntelliJ IDEA", "StackOverflow"];
 
 async function resolveLocale(request: NextRequest): Promise<Locale> {
-    // ?lang=fr|en forces a language; otherwise follow the visitor's site locale.
-    const requested = request.nextUrl.searchParams.get("lang");
+    // ?language=fr|en forces a language; retain ?lang= as a compatibility alias.
+    const requested = request.nextUrl.searchParams.get("language") ?? request.nextUrl.searchParams.get("lang");
     if (requested && locales.includes(requested as Locale)) return requested as Locale;
 
     const userLocale = await getUserLocale();
@@ -73,7 +74,7 @@ async function buildCvData(locale: Locale): Promise<CvData> {
                 date: t(`${path}.date`),
                 description: summaryOr(path),
                 tasks: exp.tasks.map(task => t(`${path}.tasks.${task}`)),
-                href: exp.links?.[0]?.href
+                href: exp.key === "unige_are" ? "https://www.unige.ch/" : exp.links?.[0]?.href
             };
         }),
         projects: PROJECTS.map(project => {
@@ -112,19 +113,21 @@ async function buildCvData(locale: Locale): Promise<CvData> {
 }
 
 export async function GET(request: NextRequest) {
+    const compact = request.nextUrl.searchParams.get("compact") === "true";
     const locale = await resolveLocale(request);
-    const data = await buildCvData(locale);
-    // Optional photo: drop it at public/cv/photo.jpg and it shows up at the top of the sidebar.
+    const fullData = await buildCvData(locale);
+    const data = compact ? compactCv(fullData) : fullData;
+    // Optional photo: drop it at public/cv/photo.jpg and it shows up in the header.
     data.photo = await readFile(path.join(process.cwd(), "public/cv/photo.jpg")).catch(() => undefined);
     // CvDocument renders a <Document> root; react-pdf's typing only accepts the element itself.
-    const pdf = await renderToBuffer(createElement(CvDocument, { data }) as unknown as Parameters<typeof renderToBuffer>[0]);
+    const pdf = await renderToBuffer(createElement(CvDocument, { data, compact }) as unknown as Parameters<typeof renderToBuffer>[0]);
 
     return new Response(new Uint8Array(pdf), {
         headers: {
             "Content-Type": "application/pdf",
             // inline: the browser displays the PDF. The filename is the default for "Save as", and
             // viewers that append a file name to the tab title show this instead of the URL's "cv".
-            "Content-Disposition": `inline; filename="${data.name.replace(/\s+/g, "-")}-CV-${locale.toUpperCase()}.pdf"`,
+            "Content-Disposition": `inline; filename="${data.name.replace(/\s+/g, "-")}-CV-${compact ? "Compact-" : ""}${locale.toUpperCase()}.pdf"`,
             "Cache-Control": "no-store"
         }
     });

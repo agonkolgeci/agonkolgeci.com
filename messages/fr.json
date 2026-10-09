@@ -283,8 +283,8 @@
                 "unige-events": {
                     "title": "UNIGE Events",
                     "date": "Février 2026 - Mai 2026",
-                    "description": "Projet universitaire de fin d'études réalisé à l'Université de Genève (UNIGE). Il s'agit d'une plateforme web centralisée permettant aux étudiants et associations de créer, partager et s'inscrire à des événements sur le campus, avec une architecture robuste basée sur des microservices.",
-                    "summary": "Projet de fin de Bachelor en équipe : plateforme web où les étudiants et les associations publient des événements du campus et s'y inscrivent. Architecture en microservices."
+                    "description": "Projet universitaire réalisé à l'Université de Genève (UNIGE). Il s'agit d'une plateforme web centralisée permettant aux étudiants et associations de créer, partager et s'inscrire à des événements sur le campus, avec une architecture robuste basée sur des microservices.",
+                    "summary": "Projet universitaire en équipe : plateforme web où les étudiants et les associations publient des événements du campus et s'y inscrivent. Architecture en microservices."
                 },
                 "redcap-swisscom-module": {
                     "title": "Module REDCap HUG",
