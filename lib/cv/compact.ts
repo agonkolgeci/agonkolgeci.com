@@ -42,8 +42,8 @@ export function compactCv(data: CvData): CvData {
     return {
         ...data,
         profile: fr
-            ? "J'ai commencé à programmer en autodidacte en 2018, en créant autour de Minecraft. De fil en aiguille, je suis passé de Java aux applications web, puis aux projets en équipe à l'UNIGE.\n\nEn parallèle de mon Master à l'UNIGE, je développe mes propres projets et encadre des étudiants en programmation. Je souhaite aujourd'hui mettre cette expérience à profit au sein d'une équipe de développement."
-            : "I started teaching myself to code in 2018, building things around Minecraft. From Java, I moved into web applications and then team projects at UNIGE.\n\nNow studying for my Master's, I still work on my own projects. I'd like to join a team, learn from the people around me and contribute to software people use every day.",
+            ? "J'ai commencé à programmer en autodidacte en 2017, en créant autour de Minecraft. De fil en aiguille, je suis passé de Java aux applications web, puis aux projets en équipe à l'UNIGE.\n\nEn parallèle de mon Master à l'UNIGE, je développe mes propres projets et encadre des étudiants en programmation. Je souhaite aujourd'hui mettre cette expérience à profit au sein d'une équipe de développement."
+            : "I started teaching myself to code in 2017, building things around Minecraft. From Java, I moved into web applications and then team projects at UNIGE.\n\nNow studying for my Master's, I still work on my own projects. I'd like to join a team, learn from the people around me and contribute to software people use every day.",
         education: ["master", "bachelor"].map(key => {
             const school = data.education[SCHOOLS.findIndex(item => item.key === key)];
             return {

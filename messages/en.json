@@ -109,7 +109,7 @@
         "case_desc": "Scroll down to unlock the cyber-chest and project the holographic grid matrix.",
         "case_hint": "Hover on any holographic orb to examine the technical specifications.",
         "tech_details": {
-            "java": { "category": "Language", "exp": "Started in 2018", "desc": "Object-oriented programming for robust backend servers, plugin architectures, and high-performance network sockets." },
+            "java": { "category": "Language", "exp": "Started in 2017", "desc": "Object-oriented programming for robust backend servers, plugin architectures, and high-performance network sockets." },
             "javascript": { "category": "Language", "exp": "Started in 2020", "desc": "Dynamic client-side scripting and modern functional automation bot integrations across communities." },
             "typescript": { "category": "Language", "exp": "Started in 2022", "desc": "Statically typed JavaScript scaling application codebases with absolute safety and strict interface bindings." },
             "php": { "category": "Language", "exp": "Started in 2019", "desc": "Server-side scripting powering legacy and modern web applications with relational database persistence." },
@@ -134,7 +134,7 @@
             "jenkins": { "category": "Ops / Tool", "exp": "Started in 2024", "desc": "Automated building, testing, and continuous delivery pipeline triggers for robust software deployment." },
             "bash": { "category": "Ops / Tool", "exp": "Started in 2018", "desc": "Unix shell scripting for systems automation, background cron tasks, and network management." },
             "powershell": { "category": "Ops / Tool", "exp": "Started in 2020", "desc": "Task automation and configuration management framework with object-oriented shell administration." },
-            "mysql": { "category": "Ops / Tool", "exp": "Started in 2018", "desc": "Structured transactional database records, query plan indexes, and persistent caching data integrity." },
+            "mysql": { "category": "Ops / Tool", "exp": "Started in 2017", "desc": "Structured transactional database records, query plan indexes, and persistent caching data integrity." },
             "mongodb": { "category": "Ops / Tool", "exp": "Started in 2022", "desc": "Flexible document JSON structures, horizontal cluster databases, and dynamic document schemas." },
             "maven": { "category": "Tool", "exp": "Started in 2018", "desc": "Declarative project management and dependency resolution build tool for standard Java ecosystems." },
             "gradle": { "category": "Tool", "exp": "Started in 2020", "desc": "Highly performant build automation tool with flexible Kotlin and Groovy DSL compilation scripts." },

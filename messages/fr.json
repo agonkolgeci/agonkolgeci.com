@@ -109,7 +109,7 @@
         "case_desc": "Défilez pour déverrouiller le cyber-coffre et projeter la matrice technologique holographique.",
         "case_hint": "Survolez un orbe holographique pour inspecter les spécifications techniques.",
         "tech_details": {
-            "java": { "category": "Langage", "exp": "Débuté en 2018", "desc": "Programmation orientée objet pour des serveurs backend robustes, des architectures de plugins et des sockets réseau haute performance." },
+            "java": { "category": "Langage", "exp": "Débuté en 2017", "desc": "Programmation orientée objet pour des serveurs backend robustes, des architectures de plugins et des sockets réseau haute performance." },
             "javascript": { "category": "Langage", "exp": "Débuté en 2020", "desc": "Scripting dynamique côté client et intégrations de bots d'automatisation fonctionnels modernes à travers les communautés." },
             "typescript": { "category": "Langage", "exp": "Débuté en 2022", "desc": "JavaScript typé statiquement pour faire évoluer les applications en toute sécurité avec des liaisons d'interface strictes." },
             "php": { "category": "Langage", "exp": "Débuté en 2019", "desc": "Développement de scripts côté serveur pour propulser des applications web dynamiques et modernes avec base de données." },
@@ -134,7 +134,7 @@
             "jenkins": { "category": "Ops / Outil", "exp": "Débuté en 2024", "desc": "Automatisation des tests, de l'intégration et du déploiement continu d'applications logicielles en production." },
             "bash": { "category": "Ops / Outil", "exp": "Débuté en 2018", "desc": "Scripting shell Unix pour l'automatisation des tâches système, les tâches planifiées cron et l'administration serveur." },
             "powershell": { "category": "Ops / Outil", "exp": "Débuté en 2020", "desc": "Cadre d'automatisation des tâches et de gestion de configuration orienté objet pour l'administration de systèmes Windows." },
-            "mysql": { "category": "Ops / Outil", "exp": "Débuté en 2018", "desc": "Enregistrements transactionnels structurés, indexations complexes et intégrité persistante des caches." },
+            "mysql": { "category": "Ops / Outil", "exp": "Débuté en 2017", "desc": "Enregistrements transactionnels structurés, indexations complexes et intégrité persistante des caches." },
             "mongodb": { "category": "Ops / Outil", "exp": "Débuté en 2022", "desc": "Structures JSON de documents flexibles, bases de données de clusters horizontaux et schémas dynamiques." },
             "maven": { "category": "Outil", "exp": "Débuté en 2018", "desc": "Outil de build et de gestion déclarative des dépendances pour standardiser l'architecture des projets Java." },
             "gradle": { "category": "Outil", "exp": "Débuté en 2020", "desc": "Moteur de build de pointe offrant une compilation flexible via des scripts écrits en Kotlin et en Groovy DSL." },
