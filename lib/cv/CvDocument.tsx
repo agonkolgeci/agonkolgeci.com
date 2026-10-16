@@ -11,6 +11,9 @@ Font.register({ family: "Poppins", fonts: [
 ] });
 Font.registerHyphenationCallback(word => [word]);
 
+// Same artwork as the LinkedIn banner, cropped to the header's 595 x 118 ratio.
+const HEADER_BACKDROP = path.join(process.cwd(), "public/cv/header.jpg");
+
 export type CvData = {
     locale: string;
     name: string;
@@ -34,15 +37,15 @@ const colors = {
 const styles = StyleSheet.create({
     page: { paddingTop: 24, paddingBottom: 32, fontFamily: "Poppins", fontSize: 8.3, lineHeight: 1.48, color: colors.text },
     header: { height: 118, marginTop: -24, backgroundColor: colors.ink, flexDirection: "row", alignItems: "center", paddingHorizontal: 28, marginBottom: 18 },
-    ornament: { position: "absolute", right: 0, top: 0, width: 250, height: 118 },
+    backdrop: { position: "absolute", left: 0, top: 0, width: 595.28, height: 118 },
     photo: { width: 87, height: 87, borderRadius: 44, objectFit: "cover", objectPosition: "50% 30%", borderWidth: 2, borderColor: "#3b5875" },
     identity: { marginLeft: 25, flex: 1 },
-    name: { fontWeight: 600, fontSize: 29, lineHeight: 1.2, color: "#ffffff", letterSpacing: -0.7 },
-    role: { fontSize: 12, color: colors.blue, marginTop: 6 },
+    name: { fontWeight: 600, fontSize: 26, lineHeight: 1.2, color: "#ffffff", letterSpacing: -0.7 },
+    role: { fontSize: 14, color: colors.blue, marginTop: 6 },
     columns: { flexDirection: "row", paddingHorizontal: 28 },
     sidebar: { width: 155, paddingRight: 17, borderRightWidth: 0.7, borderRightColor: colors.rule },
     main: { flex: 1, paddingLeft: 20 },
-    section: { marginBottom: 17 },
+    section: { marginBottom: 25 },
     sideSection: { marginBottom: 18 },
     sectionHeading: { flexDirection: "row", alignItems: "center", marginBottom: 9, paddingBottom: 4, borderBottomWidth: 0.7, borderBottomColor: colors.rule },
     headingMark: { width: 3, height: 11, backgroundColor: colors.blue, marginRight: 7 },
@@ -57,7 +60,7 @@ const styles = StyleSheet.create({
     skillText: { fontSize: 8, lineHeight: 1.6 },
     language: { marginBottom: 4, fontSize: 8 },
     languageLevel: { color: colors.muted, fontSize: 7.3 },
-    entry: { marginBottom: 8 },
+    entryGap: { marginTop: 12 },
     entryTitle: { fontWeight: 600, color: colors.ink, fontSize: 9.5, textDecoration: "none" },
     entryDate: { fontSize: 7.2, color: colors.muted },
     meta: { flexDirection: "row", justifyContent: "space-between", alignItems: "baseline", marginTop: 1, marginBottom: 3 },
@@ -79,7 +82,7 @@ function Heading({ title }: { title: string }) {
 function Section<T>({ title, items, render, last = false }: { title: string; items: T[]; last?: boolean; render: (item: T) => React.ReactNode }) {
     return <View style={[styles.section, last ? { marginBottom: 0 } : {}]}>
         <View wrap={false}><Heading title={title} />{items[0] !== undefined && render(items[0])}</View>
-        {items.slice(1).map((item, index) => <View key={index} wrap={false}>{render(item)}</View>)}
+        {items.slice(1).map((item, index) => <View key={index} wrap={false} style={styles.entryGap}>{render(item)}</View>)}
     </View>;
 }
 
@@ -101,10 +104,9 @@ const displayUrl = (url: string) => url.replace(/^https?:\/\/(www\.)?/, "").repl
 
 function Header({ data }: { data: CvData }) {
     return (<View style={styles.header} wrap={false}>
-                <Svg viewBox="0 0 250 118" style={styles.ornament}>
-                    {Array.from({ length: 10 }, (_, i) => <Path key={i} d={`M ${95 + i * 17} -20 Q ${5 + i * 15} 80 ${140 + i * 18} 145`} fill="none" stroke="#233e5d" strokeWidth={0.6} />)}
-                </Svg>
                 {/* react-pdf Image is not an HTML image and has no alt prop. */}
+                {/* eslint-disable-next-line jsx-a11y/alt-text */}
+                <Image src={HEADER_BACKDROP} style={styles.backdrop} />
                 {/* eslint-disable-next-line jsx-a11y/alt-text */}
                 {data.photo && <Image src={data.photo} style={styles.photo} />}
                 <View style={styles.identity}>
@@ -121,7 +123,7 @@ function Footer() {
 }
 
 function Projects({ data }: { data: CvData }) {
-    return <Section last title={data.labels.projects} items={data.projects} render={project => <View style={styles.entry}>
+    return <Section last title={data.labels.projects} items={data.projects} render={project => <View>
         <EntryTitle title={project.title} href={project.href} />
         <View style={styles.meta}><Text style={styles.subtitle}>{project.roles}</Text><Text style={styles.entryDate}>{project.date}</Text></View>
         <Text style={styles.paragraph}>{project.description}</Text>
@@ -164,7 +166,7 @@ export default function CvDocument({ data, compact = false }: { data: CvData; co
                     </View>
                 </View>
                 <View style={styles.main}>
-                    <Section title={labels.education} items={data.education} render={school => <View style={styles.entry}>
+                    <Section title={labels.education} items={data.education} render={school => <View>
                         <EntryTitle title={school.title} />
                         <View style={styles.meta}>
                             {school.href
@@ -174,7 +176,7 @@ export default function CvDocument({ data, compact = false }: { data: CvData; co
                         </View>
                         <Text style={styles.paragraph}>{school.description}</Text>
                     </View>} />
-                    <Section title={labels.experiences} items={data.experiences} render={exp => <View style={styles.entry}>
+                    <Section title={labels.experiences} items={data.experiences} render={exp => <View>
                         <EntryTitle title={exp.role} />
                         <View style={styles.meta}>
                             {exp.href
@@ -191,8 +193,7 @@ export default function CvDocument({ data, compact = false }: { data: CvData; co
             <Footer />
         </Page>
         {!compact && <Page size="A4" style={styles.page}>
-            <Header data={data} />
-            <View style={{ paddingHorizontal: 28 }}><Projects data={data} /></View>
+            <View style={{ paddingHorizontal: 28, paddingTop: 8 }}><Projects data={data} /></View>
             <Footer />
         </Page>}
     </Document>;

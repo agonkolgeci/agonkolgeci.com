@@ -41,7 +41,6 @@ export function compactCv(data: CvData): CvData {
 
     return {
         ...data,
-        role: fr ? "Développeur logiciel" : "Software developer",
         profile: fr
             ? "J'ai commencé à programmer en autodidacte en 2018, en créant autour de Minecraft. De fil en aiguille, je suis passé de Java aux applications web, puis aux projets en équipe à l'UNIGE.\n\nEn parallèle de mon Master à l'UNIGE, je développe mes propres projets et encadre des étudiants en programmation. Je souhaite aujourd'hui mettre cette expérience à profit au sein d'une équipe de développement."
             : "I started teaching myself to code in 2018, building things around Minecraft. From Java, I moved into web applications and then team projects at UNIGE.\n\nNow studying for my Master's, I still work on my own projects. I'd like to join a team, learn from the people around me and contribute to software people use every day.",
@@ -67,7 +66,7 @@ export function compactCv(data: CvData): CvData {
                 ? "J'accompagne les étudiants en séances d'exercices et de travaux pratiques, dans deux cours aux publics très différents."
                 : "I support students during exercises and lab sessions in two courses with very different audiences.",
             tasks: fr ? [
-                "Systèmes concurrents et distribués : étudiants de 3e année en informatique.",
+                "Systèmes concurrents et distribués : étudiants de 3e année en sciences informatiques.",
                 "Programmation pour biologistes : premiers pas en programmation en 2e année.",
             ] : [
                 "Concurrent and Distributed Systems: third-year computer science students.",

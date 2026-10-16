@@ -54,16 +54,16 @@
 
     "global": {
         "title": "Agon Kolgeci",
-        "role": "Développeur en logiciels",
+        "role": "Développeur logiciel",
         "label": "Portfolio",
         "description": "Passionné depuis mon plus jeune âge par l'informatique, je consacre mon temps à réaliser divers projets me permettant d'enrichir mes connaissances.",
         "portfolio": "Portfolio personnel d'Agon Kolgeci - développeur logiciel passionné présentant ses projets, compétences et expériences.",
-        "keywords": "Agon Kolgeci, Développeur de logiciels, Développeur passionné, Enthousiaste de l'informatique, Projets logiciels, Enrichissement des connaissances, Expert en codage, Portfolio de développeur, Passionné de technologie, Projets de programmation, Codeur compétent, Informatique, Compétences en développement, Logiciels innovants, Projets personnels, Passion pour la technologie, Développeur, Auto-apprentissage, Professionnel de l'informatique, Projets technologiques"
+        "keywords": "Agon Kolgeci, Développeur logiciel, Développeur passionné, Enthousiaste de l'informatique, Projets logiciels, Enrichissement des connaissances, Expert en codage, Portfolio de développeur, Passionné de technologie, Projets de programmation, Codeur compétent, Informatique, Compétences en développement, Logiciels innovants, Projets personnels, Passion pour la technologie, Développeur, Auto-apprentissage, Professionnel de l'informatique, Projets technologiques"
     },
 
     "home": {
         "title": "Agon Kolgeci",
-        "description": "Développeur en logiciels",
+        "description": "Développeur logiciel",
         "quote": "Je conçois et développe des expériences numériques de nouvelle génération. En alliant une ingénierie rigoureuse à une esthétique épurée, je donne vie aux idées.",
         "scroll_down": "Défiler vers le bas",
 
@@ -71,7 +71,7 @@
             "title": "À propos de moi",
             "description": "Découvrez qui je suis, mes passions, et le parcours qui m'a façonné. Apprenez-en plus sur mon expérience ainsi que mes centres d'intérêt.",
 
-            "presentation": "Salut, je suis Agon Kolgeci, développeur en logiciels et actuellement en études de Sciences Informatiques. Depuis mon plus jeune âge, j'ai pu découvrir, apprendre et expérimenter diverses technologies en autodidacte, ce qui m'a permis de développer une véritable passion pour l'informatique et d'acquérir diverses compétences dans ce domaine. Toutes ces expériences m'ont motivé à poursuivre mes études dans ce domaine afin d'approfondir mes connaissances et devenir un expert capable de créer des solutions innovantes. Aujourd'hui je suis déterminé à continuer sur cette voie et à me perfectionner chaque jour pour atteindre mes objectifs."
+            "presentation": "Salut, je suis Agon Kolgeci, développeur logiciel et actuellement en études de Sciences Informatiques. Depuis mon plus jeune âge, j'ai pu découvrir, apprendre et expérimenter diverses technologies en autodidacte, ce qui m'a permis de développer une véritable passion pour l'informatique et d'acquérir diverses compétences dans ce domaine. Toutes ces expériences m'ont motivé à poursuivre mes études dans ce domaine afin d'approfondir mes connaissances et devenir un expert capable de créer des solutions innovantes. Aujourd'hui je suis déterminé à continuer sur cette voie et à me perfectionner chaque jour pour atteindre mes objectifs."
         },
 
         "discover": {
